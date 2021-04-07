@@ -6,11 +6,15 @@
 package hu.unideb.inf.model;
 
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -74,4 +78,12 @@ public class Szemely {
     public enum NemTipus{
     FERFI,NO;
     }
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    Set<OltasEsemeny> beoltas = new HashSet<>();
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
 }

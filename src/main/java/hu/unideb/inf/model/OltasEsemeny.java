@@ -5,6 +5,7 @@
  */
 package hu.unideb.inf.model;
 
+import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,10 +22,7 @@ public class OltasEsemeny {
     @Id
     @GeneratedValue
     private int ID;
-    private int szemelyID;
-    private int vakcinaID;
-    private int orvosID;
-    private GregorianCalendar idopont;
+    private LocalDateTime idopont;
     private boolean megkapta;
 
     public int getID() {
@@ -34,40 +32,14 @@ public class OltasEsemeny {
     public void setID(int ID) {
         this.ID = ID;
     }
-
-    public int getSzemelyID() {
-        return szemelyID;
-    }
-
-    public void setSzemelyID(int szemelyID) {
-        this.szemelyID = szemelyID;
-    }
-
-    public int getVakcinaID() {
-        return vakcinaID;
-    }
-
-    public void setVakcinaID(int vakcinaID) {
-        this.vakcinaID = vakcinaID;
-    }
-
-    public int getOrvosID() {
-        return orvosID;
-    }
-
-    public void setOrvosID(int orvosID) {
-        this.orvosID = orvosID;
-    }
-
-    public GregorianCalendar getIdopont() {
+    
+    public LocalDateTime getIdopont() {
         return idopont;
     }
 
-    public void setIdopont(GregorianCalendar idopont) {
+    public void setIdopont(LocalDateTime idopont) {
         this.idopont = idopont;
     }
-
-
 
     public boolean isMegkapta() {
         return megkapta;

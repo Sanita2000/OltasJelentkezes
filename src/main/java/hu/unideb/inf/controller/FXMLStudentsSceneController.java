@@ -6,7 +6,6 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.model.Felhasznalo;
-import hu.unideb.inf.model.Student;
 import hu.unideb.inf.model.Szemely;
 import java.net.URL;
 import java.util.GregorianCalendar;
@@ -31,14 +30,6 @@ public class FXMLStudentsSceneController implements Initializable {
 
         final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("br.com.fredericci.pu");
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Student s = new Student();
-        s.setName("SAM Smith");
-        s.setCredits(36);
-        
-        entityManager.getTransaction().begin();
-        entityManager.persist(s);
-        entityManager.getTransaction().commit();
         
         Szemely bacsi=new Szemely();
         bacsi.setNev("Bacsika");

@@ -20,8 +20,6 @@ public class VakcinaErtekeles {
     @Id
     @GeneratedValue
     private int ID;
-    private int vakcinaID;
-    private int szemelyID;
     private String ertekeles;
 
     public int getID() {
@@ -30,22 +28,6 @@ public class VakcinaErtekeles {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public int getVakcinaID() {
-        return vakcinaID;
-    }
-
-    public void setVakcinaID(int vakcinaID) {
-        this.vakcinaID = vakcinaID;
-    }
-
-    public int getSzemelyID() {
-        return szemelyID;
-    }
-
-    public void setSzemelyID(int szemelyID) {
-        this.szemelyID = szemelyID;
     }
 
     public String getErtekeles() {

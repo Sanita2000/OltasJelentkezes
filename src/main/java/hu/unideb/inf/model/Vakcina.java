@@ -5,9 +5,13 @@
  */
 package hu.unideb.inf.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -55,6 +59,13 @@ public class Vakcina {
     public void setErtekeles(float ertekeles) {
         this.ertekeles = ertekeles;
     }
-
+       
+    @OneToMany
+    @JoinColumn(name = "vakcina_id")
+    Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
+    
+    @OneToMany
+    @JoinColumn(name = "vakcina_id")
+    Set<OltasEsemeny> beoltas = new HashSet<>();
 
 }

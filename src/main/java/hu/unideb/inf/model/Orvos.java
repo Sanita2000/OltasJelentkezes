@@ -5,9 +5,13 @@
  */
 package hu.unideb.inf.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -47,4 +51,11 @@ public class Orvos {
         this.ertekeles = ertekeles;
     }
 
+    @OneToMany
+    @JoinColumn(name = "orvos_id")
+    Set<OltasEsemeny> beoltas = new HashSet<>();
+    
+    @OneToMany
+    @JoinColumn(name = "orvos_id")
+    Set<OrvosBeosztas> beosztas = new HashSet<>();
 }
