@@ -31,10 +31,6 @@ public class Orvos {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public String getNev() {
         return nev;
     }
