@@ -5,49 +5,68 @@
  */
 package hu.unideb.inf.controller;
 
+import Extensions.SceneExtentions;
+import hu.unideb.inf.MainApp;
+import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.Felhasznalo;
+import hu.unideb.inf.model.JPADAO;
+import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.Szemely;
+import hu.unideb.inf.model.Vakcina;
+import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- * FXML Controller class
- *
- * @author kocsisg
- */
+
 public class FXMLStudentsSceneController implements Initializable {
 
     @FXML
-    void handleButtonPushed(ActionEvent event) {
-        System.out.println("Hello world!!!");
-
-        final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("br.com.fredericci.pu");
-        final EntityManager entityManager = entityManagerFactory.createEntityManager();
-        
-        Szemely bacsi=new Szemely();
-        bacsi.setNev("Bacsika");
-        bacsi.setNem(Szemely.NemTipus.FERFI);
-        bacsi.setTAJ(772722010);
-        bacsi.setSzuletesiDatum(new GregorianCalendar(1999,02,02));
-        
-        entityManager.getTransaction().begin();
-        entityManager.persist(bacsi);
-        entityManager.getTransaction().commit();
-        
-        Felhasznalo user=new Felhasznalo();
-        user.setFelhasznalonev("bela");
-        user.setJelszo("hilihalihaliho");
-        
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
+    void AdatfeltoltesButtonPushed(ActionEvent event) throws IOException {
+        System.out.println("Hello world!!!");        
+        try (DAO dao = new JPADAO();)
+        {            
+            /*Orvos o1 = new Orvos();
+            o1.setNev("Dr. Kissebb István");
+            Orvos o2 = new Orvos();
+            o2.setNev("Dr. Nagyobb István");
+            Orvos o3 = new Orvos();
+            o3.setNev("Dr. Közepesebb István");
+            Vakcina v1 = new Vakcina();
+            v1.setNev("vak1");
+            v1.setLeiras("fasza");
+            dao.save(v1);
+            dao.save(o1);
+            dao.save(o2);
+            dao.save(o3);*/
+            
+            List<Orvos> dokik = dao.getAllOrvos();
+            for (int i = 0; i < dokik.size(); i++) {
+                System.out.println(dokik.get(i).getNev());
+            }
+            
+        }
+        catch (Exception e)
+        {
+            
+        }        
+       /* System.out.println("PRess Enter...");
+        (new Scanner(System.in)).nextLine();      */
+        SceneExtentions sc = new SceneExtentions();
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
     }
 
     /**
