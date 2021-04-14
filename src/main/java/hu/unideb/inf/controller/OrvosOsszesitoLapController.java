@@ -47,8 +47,6 @@ public class OrvosOsszesitoLapController implements Initializable {
     
     
     
-                   
-    
     @FXML
     void GoToIndexButtonPushed(ActionEvent event) throws IOException {
         

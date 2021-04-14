@@ -60,12 +60,10 @@ public class Vakcina {
         this.ertekeles = ertekeles;
     }
        
-    @OneToMany
-    @JoinColumn(name = "vakcina_id")
+    @OneToMany(mappedBy = "vakcina")    
     Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
     
-    @OneToMany
-    @JoinColumn(name = "vakcina_id")
+    @OneToMany(mappedBy = "vakcina")    
     Set<OltasEsemeny> beoltas = new HashSet<>();
 
 }

@@ -8,6 +8,8 @@ package hu.unideb.inf.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,6 +23,10 @@ public class VakcinaErtekeles {
     @GeneratedValue
     private int ID;
     private String ertekeles;
+    
+     @ManyToOne
+    @JoinColumn(name = "vakcina_id", referencedColumnName = "ID")
+    private Vakcina vakcina;
 
     public int getID() {
         return ID;

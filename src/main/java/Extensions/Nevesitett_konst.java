@@ -12,4 +12,7 @@ package Extensions;
 public class Nevesitett_konst {
     public static int HOURS_ADDED_TO_START = 2;
     public static double DEFAULT_VACCINE_TIME_IN_HOURS = 0.5;
+    
+    //Orvosok szabadisőpont generálásához:
+    public static int MAX_DAY_TO_ADD = 7;
 }

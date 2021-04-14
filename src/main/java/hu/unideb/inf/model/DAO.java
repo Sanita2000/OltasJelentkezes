@@ -17,4 +17,5 @@ public interface DAO extends AutoCloseable{
     public void delete (Object o);
     public List<Orvos> getAllOrvos();
     
+    public List<OrvosBeosztas> GetOrvosBeosztas(Orvos o);
 }

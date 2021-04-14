@@ -52,5 +52,14 @@ public class JPADAO implements DAO{
         System.out.println(orvosok.size());
         return orvosok;
     }
+
+    @Override
+    public List<OrvosBeosztas> GetOrvosBeosztas(Orvos o) {
+        TypedQuery<OrvosBeosztas> query = entityManager.createQuery("SELECT b FROM OrvosBeosztas b WHERE b.orvos.ID = " + o.getID(), OrvosBeosztas.class);
+        //query.setParameter("id", o.getID());
+        System.out.println(o.getID());
+        List<OrvosBeosztas> beosztas = query.getResultList();
+        return beosztas;
+    }
    
 }

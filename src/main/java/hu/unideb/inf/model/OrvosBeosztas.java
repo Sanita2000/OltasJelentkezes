@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,15 +28,15 @@ public class OrvosBeosztas {
     private int ID;
     private LocalDateTime  kezdesIdo;
     private LocalDateTime  vegzesIdo;
+    
+    @ManyToOne
+    @JoinColumn(name = "orvos_id", referencedColumnName = "ID")
+    private Orvos orvos;
 
     public int getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-    
 
     public LocalDateTime getKezdesIdo() {
         return kezdesIdo;
@@ -48,11 +51,12 @@ public class OrvosBeosztas {
     }
 
     public void setVegzesIdo(LocalDateTime vegzesIdo) {
-        if (this.kezdesIdo.compareTo(vegzesIdo) < 0)
+        /*if (this.kezdesIdo.compareTo(vegzesIdo) < 0)
         {
             this.vegzesIdo = vegzesIdo;
         }
-        this.vegzesIdo = this.kezdesIdo.plusHours(Nevesitett_konst.HOURS_ADDED_TO_START);       //hiba esetén a default értéket adjuk a kezdéshez
+        this.vegzesIdo = this.kezdesIdo.plusHours(Nevesitett_konst.HOURS_ADDED_TO_START);       //hiba esetén a default értéket adjuk a kezdéshez*/
+        this.vegzesIdo = vegzesIdo;
     }
 
     

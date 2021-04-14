@@ -38,21 +38,7 @@ public class FXMLStudentsSceneController implements Initializable {
     void AdatfeltoltesButtonPushed(ActionEvent event) throws IOException {
         System.out.println("Hello world!!!");        
         try (DAO dao = new JPADAO();)
-        {            
-            /*Orvos o1 = new Orvos();
-            o1.setNev("Dr. Kissebb István");
-            Orvos o2 = new Orvos();
-            o2.setNev("Dr. Nagyobb István");
-            Orvos o3 = new Orvos();
-            o3.setNev("Dr. Közepesebb István");
-            Vakcina v1 = new Vakcina();
-            v1.setNev("vak1");
-            v1.setLeiras("fasza");
-            dao.save(v1);
-            dao.save(o1);
-            dao.save(o2);
-            dao.save(o3);*/
-            
+        {                        
             List<Orvos> dokik = dao.getAllOrvos();
             for (int i = 0; i < dokik.size(); i++) {
                 System.out.println(dokik.get(i).getNev());
@@ -63,8 +49,6 @@ public class FXMLStudentsSceneController implements Initializable {
         {
             
         }        
-       /* System.out.println("PRess Enter...");
-        (new Scanner(System.in)).nextLine();      */
         SceneExtentions sc = new SceneExtentions();
         sc.ChangeScene(event, "OrvosOsszesitoLap");
     }
