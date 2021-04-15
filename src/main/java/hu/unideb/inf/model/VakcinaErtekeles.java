@@ -26,7 +26,7 @@ public class VakcinaErtekeles {
     
      @ManyToOne
     @JoinColumn(name = "vakcina_id", referencedColumnName = "ID")
-    private Vakcina vakcina;
+    public Vakcina vakcina;
 
     public int getID() {
         return ID;

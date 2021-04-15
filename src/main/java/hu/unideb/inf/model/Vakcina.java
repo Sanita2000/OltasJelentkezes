@@ -61,9 +61,9 @@ public class Vakcina {
     }
        
     @OneToMany(mappedBy = "vakcina")    
-    Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
+    public Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
     
     @OneToMany(mappedBy = "vakcina")    
-    Set<OltasEsemeny> beoltas = new HashSet<>();
+    public Set<OltasEsemeny> beoltas = new HashSet<>();
 
 }

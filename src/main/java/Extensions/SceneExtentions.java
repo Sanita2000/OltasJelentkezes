@@ -7,6 +7,7 @@ package Extensions;
 
 import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.JPADAO;
+import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
 import java.io.IOException;
@@ -27,8 +28,9 @@ import javafx.stage.Stage;
  *
  * @author karal
  */
-public class SceneExtentions {
+public class SceneExtentions {    
     
+    static DAO dao = new JPADAO();
     
     public void ChangeScene(ActionEvent event, String scene_name) throws IOException
     {
@@ -74,10 +76,10 @@ public class SceneExtentions {
     
     public static void RenderOrvosIdopont()
     {
-        DAO dao = new JPADAO();
         List<Orvos> _orvosok = dao.getAllOrvos(); 
         
         for (Orvos item : _orvosok) {
+            System.out.println("Orvos: " + item.getNev());
             List<OrvosBeosztas> tmp = dao.GetOrvosBeosztas(item);
             tmp.removeIf(p -> p.getKezdesIdo().isBefore(LocalDateTime.now()));
             if (tmp.size() < 10)
@@ -86,14 +88,36 @@ public class SceneExtentions {
                     OrvosBeosztas beo = SceneExtentions.GenerateRandomDateTime();
                     item.beosztas.add(beo);                    
                     System.out.println(tmp.size() + "  " + item.getNev());
+                    beo.orvos = item;
                     dao.save(beo);
-                }
-                
-                dao.save(item);
-                
+                }                                
             }
         }    
         
+        List<Orvos> __orvosok = dao.getAllOrvos(); 
+        System.out.println("Orvosok száma: " + __orvosok.size());
         
+        
+    }
+    
+    public static void GenerateTestOltasEsemeny()
+    {
+        OltasEsemeny oltas = new OltasEsemeny();
+        oltas.setIdopont(LocalDateTime.now().minusHours(1));
+        oltas.setMegkapta(false);
+        oltas.vakcina = dao.GetVakcinaById(4);
+        oltas.orvos = dao.GetOrvosById(2);
+        oltas.user = dao.GetUserById(131);
+        oltas.setVizsgalva(false);
+        dao.save(oltas);        
+        
+        System.out.println("Generált esemény: " + oltas.vakcina.getNev() + "  " + oltas.orvos.getNev());
+    }
+    
+    public static List<OltasEsemeny> CheckPastOltasEsemenyek()
+    {
+        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(131);
+        esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) && e.isMegkapta() && e.isVizsgalva());
+        return esemenyek;        
     }
 }

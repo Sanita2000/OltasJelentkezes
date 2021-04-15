@@ -26,14 +26,27 @@ public class OltasEsemeny {
     private int ID;
     private LocalDateTime idopont;
     private boolean megkapta;
+    private boolean vizsgalva;
+
+    public boolean isVizsgalva() {
+        return vizsgalva;
+    }
+
+    public void setVizsgalva(boolean vizsgalva) {
+        this.vizsgalva = vizsgalva;
+    }
 
     @ManyToOne
     @JoinColumn(name = "orvos_id", referencedColumnName = "ID")
-    private Orvos orvos;
+    public Orvos orvos;
     
     @ManyToOne
     @JoinColumn(name = "vakcina_id", referencedColumnName = "ID")
-    private Vakcina vakcina;
+    public Vakcina vakcina;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "ID")
+    public Szemely user;
     
     
     public int getID() {

@@ -2,10 +2,15 @@ package hu.unideb.inf;
 
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
+import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
+import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
+import hu.unideb.inf.model.Szemely;
+import hu.unideb.inf.model.Vakcina;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +19,10 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import org.h2.tools.Server;
 
 public class MainApp extends Application {
@@ -21,19 +30,38 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         SceneExtentions.RenderOrvosIdopont();
+                          
+        JPADAO dao = new JPADAO();
+        /*Orvos o1 = new Orvos();
+        o1.setNev("Dr. Kis István");
         
-            
+        Orvos o2 = new Orvos();
+        o2.setNev("Dr. Nagy István");
+                
+        Orvos o3 = new Orvos();
+        o3.setNev("Dr. Közepes István");
+        dao.save(o3);
+        dao.save(o2);
+        dao.save(o1);
+        
+        Vakcina v1 = new Vakcina();
+        v1.setNev("vakcina1");
+        
+        Vakcina v2 = new Vakcina();
+        v2.setNev("vakcina2");
+        dao.save(v1);
+        dao.save(v2);*/
+        
+       /* Szemely f1 = new Szemely();
+        f1.setNev("Anitaa");
+        dao.save(f1);*/
+        
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLStudentsScene.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("Students Register");
         stage.setScene(scene);
         stage.show();
         
-        //DAO dao = new JPADAO();
-        //List<Orvos> _orvosok = dao.getAllOrvos(); 
-        
-                   
-           
     }
 
     /**

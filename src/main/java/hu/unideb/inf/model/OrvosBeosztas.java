@@ -31,7 +31,7 @@ public class OrvosBeosztas {
     
     @ManyToOne
     @JoinColumn(name = "orvos_id", referencedColumnName = "ID")
-    private Orvos orvos;
+    public Orvos orvos;
 
     public int getID() {
         return ID;

@@ -35,22 +35,15 @@ import javax.persistence.Persistence;
 public class FXMLStudentsSceneController implements Initializable {
 
     @FXML
-    void AdatfeltoltesButtonPushed(ActionEvent event) throws IOException {
-        System.out.println("Hello world!!!");        
-        try (DAO dao = new JPADAO();)
-        {                        
-            List<Orvos> dokik = dao.getAllOrvos();
-            for (int i = 0; i < dokik.size(); i++) {
-                System.out.println(dokik.get(i).getNev());
-            }
-            
-        }
-        catch (Exception e)
-        {
-            
-        }        
+    void AdatfeltoltesButtonPushed(ActionEvent event) throws IOException {               
         SceneExtentions sc = new SceneExtentions();
         sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+    
+    @FXML
+    void checkoltasokBtnClicked(ActionEvent event) throws IOException {
+        SceneExtentions sc = new SceneExtentions();
+        sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
     }
 
     /**
@@ -58,7 +51,7 @@ public class FXMLStudentsSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+                
     }
 
 }
