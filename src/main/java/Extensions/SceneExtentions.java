@@ -105,9 +105,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(4);
+        oltas.vakcina = dao.GetVakcinaById(5);
         oltas.orvos = dao.GetOrvosById(2);
-        oltas.user = dao.GetUserById(131);
+        oltas.user = dao.GetUserById(7);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
@@ -116,8 +116,9 @@ public class SceneExtentions {
     
     public static List<OltasEsemeny> CheckPastOltasEsemenyek()
     {
-        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(131);
-        esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) && e.isMegkapta() && e.isVizsgalva());
+        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(7);
+        esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) || e.isVizsgalva());
+        System.out.println("vizsg");
         return esemenyek;        
     }
 }

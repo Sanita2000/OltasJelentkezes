@@ -29,37 +29,52 @@ import javafx.scene.control.Label;
 
 
 public class BeoltottsagParbeszedAblakController implements Initializable {
-
-     @FXML
+    
+    @FXML
     private Label kerdesLabel;
 
     @FXML
     void OnIgenButtonClicked(ActionEvent event) {
-        
+        //to értékelés
     }
 
     @FXML
     void onNemButtonClicked(ActionEvent event) throws IOException {
-        SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLStudentsScene");
+        List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
+        if (oltasok.size() > 0)
+        {   
+            Init();
+        }
+        else
+        {
+            SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "FXMLStudentsScene");
+            System.out.println("Nincs több oltása");
+        }
     }
 
     /**
      * Initializes the controller class.
-     */
+     */    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        //SceneExtentions.GenerateTestOltasEsemeny();
-        List<OltasEsemeny> tmp = SceneExtentions.CheckPastOltasEsemenyek();
-        for (int i = 0; i < tmp.size(); i++) {
-            System.out.println("oltás: " + tmp.get(i).vakcina.getNev());
+    public void initialize(URL url, ResourceBundle rb) {        
+        Init();
+    }
+    
+    public void Init()
+    {
+        List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
+        for (int i = 0; i < oltasok.size(); i++) {
+            System.out.println("oltás: " + oltasok.get(i).vakcina.getNev());
         }
-        if (tmp.size() != 0)
+        if (oltasok.size() != 0)
         {
-            var currentOltas = tmp.get(0);
+            JPADAO dao = new JPADAO();
+            var currentOltas = oltasok.get(0);
+            currentOltas.setVizsgalva(true);
             String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont() + " időpontban?";
             kerdesLabel.setText(title);
-            
+            dao.update(currentOltas);
         }
     }
 

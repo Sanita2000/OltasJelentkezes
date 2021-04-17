@@ -31,8 +31,8 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         SceneExtentions.RenderOrvosIdopont();
                           
-        JPADAO dao = new JPADAO();
-        /*Orvos o1 = new Orvos();
+        /*JPADAO dao = new JPADAO();
+        Orvos o1 = new Orvos();
         o1.setNev("Dr. Kis István");
         
         Orvos o2 = new Orvos();
@@ -50,12 +50,12 @@ public class MainApp extends Application {
         Vakcina v2 = new Vakcina();
         v2.setNev("vakcina2");
         dao.save(v1);
-        dao.save(v2);*/
+        dao.save(v2);
         
-       /* Szemely f1 = new Szemely();
+        Szemely f1 = new Szemely();
         f1.setNev("Anitaa");
         dao.save(f1);*/
-        
+        SceneExtentions.GenerateTestOltasEsemeny();
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLStudentsScene.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("Students Register");
