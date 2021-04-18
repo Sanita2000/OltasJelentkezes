@@ -28,7 +28,9 @@ public class JPADAO implements DAO{
 
     @Override
     public void update(Object o) {
-        save(o);
+        entityManager.getTransaction().begin();
+        entityManager.merge(o);
+        entityManager.getTransaction().commit();
     }
 
     @Override
