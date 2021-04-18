@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package hu.unideb.inf.controller;
-
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.Felhasznalo;
@@ -34,16 +33,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.swing.JOptionPane;
 
 public class indexController implements Initializable {
 
-    public static int userID=1;
+    public static int userID = 1;
 
-    
-    public static int ev=0;
-    public static int honap=0;
-    public static int nap=0;
-    
+    public static int ev = 0;
+    public static int honap = 0;
+    public static int nap = 0;
 
     @FXML
     private Label nevLabel;
@@ -71,7 +69,7 @@ public class indexController implements Initializable {
 
     @FXML
     private ChoiceBox<Integer> napChoiceBox;
-    
+
     @FXML
     private ChoiceBox<NemTipus> nemChoiceBox;
 
@@ -81,40 +79,93 @@ public class indexController implements Initializable {
     @FXML
     private Button OKButton;
 
+    public static boolean isNumeric(String strNum) {
+    if (strNum == null) {
+        return false;
+    }
+    try {
+        double d = Double.parseDouble(strNum);
+    } catch (NumberFormatException nfe) {
+        return false;
+    }
+    return true;
+    }
+    
+    private boolean ErvenyesNev(String nev) {
+        int szamok = 0;
+        for (int i = 0; i < nev.length(); i++) {
+            if (Character.isDigit(nev.charAt(i))) {
+                szamok++;
+            }
+        }
+        return (nev.contains(" ") && nev.length() >= 5 && szamok == 0);
+    }
+
+    private boolean ErvenyesDatum(int ev, int honap, int nap) {
+        System.out.println(honap);
+        if (honap == 2 && nap > 28) {
+            return false;
+        }
+        else if (ev / 4 == 0 && ev != 1900 && honap == 2 && nap > 29) {
+            return false;
+        }
+        else if ((honap == 4 || honap == 6 || honap == 9 || honap == 11) && nap > 30) {
+            return false;
+        }
+        else return true;
+    }
+
     @FXML
     void OKButtonPushed(ActionEvent event) {
+        String nev = nevTextField.getText();
+        String TAJ=TAJTextField.getText();
+        if(!isNumeric(TAJ) || TAJ.length()!=9 || TAJ.charAt(0)=='0')
+        {
+            JOptionPane.showMessageDialog(null,"Hibás adatot adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        ev = evChoiceBox.getValue();
+        nap = napChoiceBox.getValue();
+        honap = honapChoiceBox.getValue();
 
-        Change.setVisible(true);
-        nevLabel.setVisible(true);
-        TAJLabel.setVisible(true);
-        SzuletesiDatumLabel.setVisible(true);
-        nemLabel.setVisible(true);
-        nevTextField.setVisible(false);
-        TAJTextField.setVisible(false);
-        evChoiceBox.setVisible(false);
-        honapChoiceBox.setVisible(false);
-        napChoiceBox.setVisible(false);
-        nemChoiceBox.setVisible(false);
-        OKButton.setVisible(false);
+        if (!ErvenyesNev(nev) || !ErvenyesDatum(ev, honap, nap)) 
+        {
+            JOptionPane.showMessageDialog(null,"Hibás adatot adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            return;
+        } 
+        else {
+        JOptionPane.showMessageDialog(null,
+                    "Az adatok sikeresen módosítva.",
+                    "Üzenet",
+                    JOptionPane.PLAIN_MESSAGE);
 
-        nevLabel.setText(nevTextField.getText());
-        TAJLabel.setText("" + TAJTextField.getText());
-        
-        ev=evChoiceBox.getValue();
-        nap=napChoiceBox.getValue();
-        honap=honapChoiceBox.getValue()-1;
-        
-        SzuletesiDatumLabel.setText(format(new GregorianCalendar(ev,honap,nap)));
-        nemLabel.setText(nemChoiceBox.getValue().toString());
-        
-        DAO dao = new JPADAO();
-        Szemely szemely = dao.GetUserById(userID);
-        szemely.setNem(nemChoiceBox.getValue());
-        szemely.setNev(nevTextField.getText());
-        szemely.setSzuletesiDatum(new GregorianCalendar(ev, honap, nap));
-        szemely.setTAJ(Integer.parseInt(TAJTextField.getText()));
-        dao.update(szemely);
-        dao.save(szemely);
+            Change.setVisible(true);
+            nevLabel.setVisible(true);
+            TAJLabel.setVisible(true);
+            SzuletesiDatumLabel.setVisible(true);
+            nemLabel.setVisible(true);
+            nevTextField.setVisible(false);
+            TAJTextField.setVisible(false);
+            evChoiceBox.setVisible(false);
+            honapChoiceBox.setVisible(false);
+            napChoiceBox.setVisible(false);
+            nemChoiceBox.setVisible(false);
+            OKButton.setVisible(false);
+
+            nevLabel.setText(nevTextField.getText());
+            TAJLabel.setText("" + TAJTextField.getText());
+            SzuletesiDatumLabel.setText(format(new GregorianCalendar(ev, --honap, nap)));
+            nemLabel.setText(nemChoiceBox.getValue().toString());
+
+            DAO dao = new JPADAO();
+            Szemely szemely = dao.GetUserById(userID);
+            szemely.setNem(nemChoiceBox.getValue());
+            szemely.setNev(nevTextField.getText());
+            szemely.setSzuletesiDatum(new GregorianCalendar(ev, --honap, nap));
+            szemely.setTAJ(Integer.parseInt(TAJTextField.getText()));
+            dao.update(szemely);
+            dao.save(szemely);
+        }
     }
 
     @FXML
@@ -130,7 +181,7 @@ public class indexController implements Initializable {
         honapChoiceBox.setVisible(true);
         napChoiceBox.setVisible(true);
         nemChoiceBox.setVisible(true);
-        OKButton.setVisible(true);        
+        OKButton.setVisible(true);
     }
 
     @FXML
@@ -178,31 +229,28 @@ public class indexController implements Initializable {
         SzuletesiDatumLabel.setText(format(szemely.getSzuletesiDatum()));
         TAJLabel.setText("" + szemely.getTAJ());
 
-        ObservableList nemek =  FXCollections.observableArrayList();
+        ObservableList nemek = FXCollections.observableArrayList();
         nemek.add(Szemely.NemTipus.FERFI);
         nemek.add(Szemely.NemTipus.NO);
         nemChoiceBox.setItems(nemek);
         nemChoiceBox.getSelectionModel().selectFirst();
-        
-        ObservableList honapok =  FXCollections.observableArrayList();
-        for(int i=1; i<13; i++)
-        {
+
+        ObservableList honapok = FXCollections.observableArrayList();
+        for (int i = 1; i < 13; i++) {
             honapok.add(i);
         }
         honapChoiceBox.setItems(honapok);
         honapChoiceBox.getSelectionModel().selectFirst();
-        
-        ObservableList napok =  FXCollections.observableArrayList();
-        for(int i=1; i<32; i++)
-        {
+
+        ObservableList napok = FXCollections.observableArrayList();
+        for (int i = 1; i < 32; i++) {
             napok.add(i);
         }
         napChoiceBox.setItems(napok);
         napChoiceBox.getSelectionModel().selectFirst();
-        
-        ObservableList evek =  FXCollections.observableArrayList();
-        for(int i=1900; i<2005; i++)
-        {
+
+        ObservableList evek = FXCollections.observableArrayList();
+        for (int i = 1900; i < 2005; i++) {
             evek.add(i);
         }
         evChoiceBox.setItems(evek);
