@@ -47,6 +47,8 @@ public class OrvosOsszesitoLapController implements Initializable {
     
     
     
+                   
+    
     @FXML
     void GoToIndexButtonPushed(ActionEvent event) throws IOException {
         
@@ -60,8 +62,9 @@ public class OrvosOsszesitoLapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
+        System.out.println("\n\ninit scece");
         List<Orvos> dokik =dao.getAllOrvos(); 
+        System.out.println(dokik);
        
         nameColumn.setCellValueFactory(new PropertyValueFactory<Orvos, String>("nev"));
         
