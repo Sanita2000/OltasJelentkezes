@@ -54,6 +54,7 @@ public class OrvosOsszesitoLapController implements Initializable {
         
         SceneExtentions sc = new SceneExtentions();
         sc.ChangeScene(event, "FXMLindexScene");
+
     }
 
     /**

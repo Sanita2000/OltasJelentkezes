@@ -143,7 +143,7 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
  
             
-            ChangeScene(event, "FXMLOltasok");
+            ChangeScene(event, "FXMLindexScene");
         }
 
     }
