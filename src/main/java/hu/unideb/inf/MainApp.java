@@ -14,10 +14,10 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLStudentsScene.fxml"));
-        Scene scene = new Scene(loader.load());
-        stage.setTitle("Students Register");
-        stage.setScene(scene);
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLindexScene.fxml"));
+        Scene index = new Scene(loader.load());
+        stage.setTitle("index");
+        stage.setScene(index);
         stage.show();
     }
 
