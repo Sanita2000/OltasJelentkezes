@@ -102,7 +102,6 @@ public class indexController implements Initializable {
     }
 
     private boolean ErvenyesDatum(int ev, int honap, int nap) {
-        System.out.println(honap);
         if (honap == 2 && nap > 28) {
             return false;
         }
@@ -182,6 +181,14 @@ public class indexController implements Initializable {
         napChoiceBox.setVisible(true);
         nemChoiceBox.setVisible(true);
         OKButton.setVisible(true);
+        nevTextField.setText(nevLabel.getText());
+        TAJTextField.setText(TAJLabel.getText());
+        String nemRaw=nevLabel.getText();
+        if(nemRaw=="FERFI"){
+        nemChoiceBox.setValue(Szemely.NemTipus.FERFI);}
+        else {
+        nemChoiceBox.setValue(Szemely.NemTipus.NO);}
+
     }
 
     @FXML
@@ -215,7 +222,7 @@ public class indexController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        /*
         DAO dao = new JPADAO();
         Szemely sz = new Szemely();
         sz.setNem(Szemely.NemTipus.FERFI);
@@ -223,6 +230,8 @@ public class indexController implements Initializable {
         sz.setSzuletesiDatum(new GregorianCalendar(1999, 05, 18));
         sz.setTAJ(987654321);
         dao.save(sz);
+        */
+        DAO dao = new JPADAO();
         Szemely szemely = dao.GetUserById(userID);
         nevLabel.setText(szemely.getNev());
         nemLabel.setText(szemely.getNem().toString());
@@ -250,7 +259,7 @@ public class indexController implements Initializable {
         napChoiceBox.getSelectionModel().selectFirst();
 
         ObservableList evek = FXCollections.observableArrayList();
-        for (int i = 1900; i < 2005; i++) {
+        for (int i = 2021; i > 1899; i--) {
             evek.add(i);
         }
         evChoiceBox.setItems(evek);
