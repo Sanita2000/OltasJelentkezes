@@ -16,5 +16,6 @@ public interface DAO extends AutoCloseable{
     public void update (Object o);
     public void delete (Object o);
     public List<Orvos> getAllOrvos();
+    public Szemely GetUserById(int userid);
     
 }

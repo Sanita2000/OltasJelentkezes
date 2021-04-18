@@ -52,5 +52,11 @@ public class JPADAO implements DAO{
         System.out.println(orvosok.size());
         return orvosok;
     }
+    
+    @Override
+    public Szemely GetUserById(int userid) {
+        TypedQuery<Szemely> o_query = entityManager.createQuery("SELECT a FROM Szemely a WHERE ID = " + userid, Szemely.class);
+        return o_query.getSingleResult();
+    }
    
 }
