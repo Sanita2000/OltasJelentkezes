@@ -10,6 +10,8 @@ import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -28,6 +30,15 @@ public class OltasEsemeny {
     public int getID() {
         return ID;
     }
+    
+    @ManyToOne
+    @JoinColumn(name = "orvos_id", referencedColumnName = "ID")
+    public Orvos orvos;
+
+    @ManyToOne
+    @JoinColumn(name = "vakcina_id", referencedColumnName = "ID")
+    public Vakcina vakcina;
+
 
     public void setID(int ID) {
         this.ID = ID;

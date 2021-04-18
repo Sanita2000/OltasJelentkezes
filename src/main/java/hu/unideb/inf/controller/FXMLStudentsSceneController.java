@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import hu.unideb.inf.model.Felhasznalo;
+import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.Szemely;
 import java.net.URL;
 import java.util.GregorianCalendar;

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLAdatokController">
+   <children>
+      <Button layoutX="50.0" layoutY="344.0" mnemonicParsing="false" onAction="#backToTheVaccine" prefHeight="31.0" prefWidth="58.0" text="Vissza" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="50.0" />
+      <Text layoutX="23.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orvos választás" textAlignment="CENTER" wrappingWidth="184.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="nextbtn" disable="true" layoutX="456.0" layoutY="344.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="31.0" prefWidth="82.0" text="Tovább" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0" />
+      <RadioButton fx:id="dr1" layoutX="50.0" layoutY="64.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Ügyes Zsolt">
+         <toggleGroup>
+            <ToggleGroup fx:id="doctors" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="dr2" layoutX="50.0" layoutY="106.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Szuri Káta" toggleGroup="$doctors" />
+      <RadioButton fx:id="dr3" layoutX="50.0" layoutY="147.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Ollókezű Edward" toggleGroup="$doctors" />
+      <RadioButton fx:id="dr4" layoutX="50.0" layoutY="192.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Padlógáz" toggleGroup="$doctors" />
+      <RadioButton fx:id="dr5" layoutX="50.0" layoutY="234.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Harry Potter" toggleGroup="$doctors" />
+      <Text fx:id="tst2" layoutX="405.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Időpont választás" visible="false" wrappingWidth="153.16796875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <ChoiceBox fx:id="idopontValaszto" layoutX="377.0" layoutY="81.0" prefWidth="150.0" visible="false" />
+      <RadioButton fx:id="dr6" layoutX="50.0" layoutY="281.0" mnemonicParsing="false" onAction="#idopontok" text="Dr. Lassúkezű Dénes" toggleGroup="$doctors" />
+   </children>
+</AnchorPane>

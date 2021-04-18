@@ -59,13 +59,11 @@ public class Vakcina {
     public void setErtekeles(float ertekeles) {
         this.ertekeles = ertekeles;
     }
-       
-    @OneToMany
-    @JoinColumn(name = "vakcina_id")
+      
+    @OneToMany(mappedBy = "vakcina")  
     Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
     
-    @OneToMany
-    @JoinColumn(name = "vakcina_id")
-    Set<OltasEsemeny> beoltas = new HashSet<>();
+    @OneToMany(mappedBy = "vakcina")
+    public Set<OltasEsemeny> beoltas = new HashSet<>();
 
 }
