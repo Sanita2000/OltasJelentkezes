@@ -42,8 +42,16 @@ public class FXMLStudentsSceneController implements Initializable {
     
     @FXML
     void checkoltasokBtnClicked(ActionEvent event) throws IOException {
-        SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
+        if (SceneExtentions.CheckPastOltasEsemenyek().size() > 0)
+        {   
+            System.out.println("VAN eddigi oltása");
+            SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
+        }
+        else
+        {
+            System.out.println("Nincs eddigi oltása");
+        }
     }
 
     /**

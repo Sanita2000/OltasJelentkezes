@@ -47,11 +47,9 @@ public class Orvos {
         this.ertekeles = ertekeles;
     }
 
-    @OneToMany
-    @JoinColumn(name = "orvos_id")
-    Set<OltasEsemeny> beoltas = new HashSet<>();
+    @OneToMany(mappedBy = "orvos")
+    public Set<OltasEsemeny> beoltas = new HashSet<>();
     
-    @OneToMany
-    @JoinColumn(name = "orvos_id")
-    Set<OrvosBeosztas> beosztas = new HashSet<>();
+    @OneToMany(mappedBy = "orvos")
+    public Set<OrvosBeosztas> beosztas = new HashSet<>();
 }

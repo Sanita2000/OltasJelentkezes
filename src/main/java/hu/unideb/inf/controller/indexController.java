@@ -35,11 +35,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-/**
- * FXML Controller class
- *
- * @author kocsisg
- */
 public class indexController implements Initializable {
 
     public static int userID=1;
@@ -141,20 +136,19 @@ public class indexController implements Initializable {
     @FXML
     void handleToOrvosok(ActionEvent event) throws IOException {
         SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLOrvosokScene");
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
     }
 
     @FXML
     void handleToVakcinak(ActionEvent event) throws IOException {
         SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLVakcinakScene");
+        sc.ChangeScene(event, "FXMLVakcinak");
     }
 
     @FXML
     void handleToJelentkezes(ActionEvent event) throws IOException {
-        /*SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLJelentkezesScene");*/
-        System.out.println("JELENTKEZTEM");
+        SceneExtentions sc = new SceneExtentions();
+        sc.ChangeScene(event, "FXMLOltasok");
     }
 
     public static String format(GregorianCalendar calendar) {
