@@ -33,6 +33,9 @@ public class Szemely {
     @Enumerated(EnumType.STRING)
     NemTipus nem;
 
+    @OneToMany(mappedBy = "user")    
+    public Set<OltasEsemeny> oltasEsemeny = new HashSet<>();
+    
     public int getID() {
         return ID;
     }

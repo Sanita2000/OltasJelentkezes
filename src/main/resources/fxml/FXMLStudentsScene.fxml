@@ -6,9 +6,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLStudentsSceneController">
    <children>
-      <Button layoutX="239.0" layoutY="158.0" mnemonicParsing="false" onAction="#handleButtonPushed" prefHeight="77.0" prefWidth="104.0" text="Oké" textFill="#dd1010">
+      <Button layoutX="351.0" layoutY="165.0" mnemonicParsing="false" onAction="#AdatfeltoltesButtonPushed" prefHeight="41.0" prefWidth="184.0" text="Összes orvos">
          <font>
-            <Font size="32.0" />
+            <Font size="23.0" />
+         </font>
+      </Button>
+      <Button layoutX="61.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkoltasokBtnClicked" prefHeight="50.0" prefWidth="210.0" text="Bejelentkezés után">
+         <font>
+            <Font size="20.0" />
          </font>
       </Button>
    </children>

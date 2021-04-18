@@ -125,17 +125,17 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
             //final EntityManager entityManager = entityManagerFactory.createEntityManager();
             //TypedQuery<Vakcina> query = entityManager.createQuery("SELECT a FROM Vakcina a WHERE ID = " + oltasAzonosito, Vakcina.class);
             //List<Vakcina> vakcinak = query.getResultList();
-            List<Vakcina> vakcinak = dao.getVakcinaById(oltasAzonosito);
+            //List<Vakcina> vakcinak = dao.getVakcinaById(oltasAzonosito);
 //          System.out.println(vakcinak.get(0).getNev());
             //TypedQuery<Orvos> o_query = entityManager.createQuery("SELECT a FROM Orvos a WHERE ID = " + valasztottOrvosID, Orvos.class);
             //List<Orvos> orvosok = o_query.getResultList();
-            List<Orvos> orvosok = dao.getOrvosById(valasztottOrvosID);
+           // List<Orvos> orvosok = dao.GetOrvosById(valasztottOrvosID);
 
-            Vakcina vakcina = vakcinak.get(0);
+            //Vakcina vakcina = vakcinak.get(0);
             //vakcina.beoltas.add(oltas);
 
-            oltas.vakcina = vakcinak.get(0);
-            oltas.orvos = orvosok.get(0);
+            oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
+            oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
             //System.out.println(vakcina.beoltas);
 
             dao.save(oltas);

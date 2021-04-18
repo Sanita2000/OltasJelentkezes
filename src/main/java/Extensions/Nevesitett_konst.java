@@ -26,5 +26,6 @@ public class Nevesitett_konst {
     public static List<Integer> FOGLALT5 = new ArrayList<>();
     public static List<Integer> FOGLALT6 = new ArrayList<>();
     
+    
 
 }

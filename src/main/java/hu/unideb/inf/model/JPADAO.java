@@ -30,7 +30,9 @@ public class JPADAO implements DAO{
 
     @Override
     public void update(Object o) {
-        save(o);
+        entityManager.getTransaction().begin();
+        entityManager.merge(o);
+        entityManager.getTransaction().commit();
     }
 
     @Override
@@ -84,27 +86,27 @@ public class JPADAO implements DAO{
     }
 
     @Override
-    public List<Vakcina> getVakcinaById(int azonosito) {
-         TypedQuery<Vakcina> query = entityManager.createQuery("SELECT a FROM Vakcina a WHERE ID = " + azonosito, Vakcina.class);
-         List<Vakcina> vakcinak = query.getResultList();
-         return vakcinak;
+    public Vakcina GetVakcinaById(int id) {
+        TypedQuery<Vakcina> query = entityManager.createQuery("SELECT a FROM Vakcina a WHERE ID = " + id, Vakcina.class);
+        return query.getResultList().get(0);
     }
 
     @Override
-    public List<Orvos> getOrvosById(int azonosito) {
-        TypedQuery<Orvos> o_query = entityManager.createQuery("SELECT a FROM Orvos a WHERE ID = " + azonosito, Orvos.class);
-        List<Orvos> orvosok = o_query.getResultList();
-        return orvosok;
+    public Orvos GetOrvosById(int id) {
+        TypedQuery<Orvos> o_query = entityManager.createQuery("SELECT a FROM Orvos a WHERE ID = " + id, Orvos.class);
+        return o_query.getSingleResult();
     }
-    
-    
 
-    
-    
+    @Override
+    public List<OltasEsemeny> GetUserOltasEsemenyei(int userid) {
+        TypedQuery<OltasEsemeny> query = entityManager.createQuery("SELECT a FROM OltasEsemeny a WHERE user_id = " + userid, OltasEsemeny.class);
+        return query.getResultList();
+    }
 
-
-
-    
-    
+    @Override
+    public Szemely GetUserById(int userid) {
+        TypedQuery<Szemely> o_query = entityManager.createQuery("SELECT a FROM Szemely a WHERE ID = " + userid, Szemely.class);
+        return o_query.getSingleResult();
+    }
    
 }

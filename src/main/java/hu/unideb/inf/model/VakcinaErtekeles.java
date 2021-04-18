@@ -23,10 +23,10 @@ public class VakcinaErtekeles {
     @GeneratedValue
     private int ID;
     private String ertekeles;
-
-    @ManyToOne
+    
+     @ManyToOne
     @JoinColumn(name = "vakcina_id", referencedColumnName = "ID")
-    private Vakcina vakcina;
+    public Vakcina vakcina;
     
     public int getID() {
         return ID;
