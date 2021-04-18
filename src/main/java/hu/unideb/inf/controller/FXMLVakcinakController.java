@@ -27,6 +27,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import org.controlsfx.control.Rating;
 //import org.controlsfx.control.Rating;
 
 /**
@@ -45,9 +46,9 @@ public class FXMLVakcinakController implements Initializable {
     @FXML
     private ListView<String> oltasLista;
     
-    /*@FXML
+    @FXML
     private Rating ertekeles; //dependenciesben hozzáadtam a controlsfx 11.1.0.jar-t
-    */
+    
     private float ertek;
     
     @FXML
@@ -97,7 +98,7 @@ public class FXMLVakcinakController implements Initializable {
        
         oltasLista.getItems().addAll(list);
         
-        /*
+        
         ertekeles.setMouseTransparent(true); // ne lehessen modosítani, disable nemjo, mert elszürkiti
         ertekeles.ratingProperty().set(floatKerekit(0));
         szoveg.setText("Válassz egy oltást!");
@@ -128,7 +129,7 @@ public class FXMLVakcinakController implements Initializable {
             }
             }
         });
-*/
+
     }
 
     private double floatKerekit(float szam) {
