@@ -27,9 +27,12 @@ import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvos;
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasNev;
+import static hu.unideb.inf.controller.indexController.format;
+import static hu.unideb.inf.controller.indexController.userID;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
+import hu.unideb.inf.model.Szemely;
 
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
@@ -69,6 +72,17 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
     @FXML
     private Text hiba;
     
+    @FXML
+    private Text nevMezo;
+
+    @FXML
+    private Text tajMezo;
+
+    @FXML
+    private Text szulinapMezo;
+
+    @FXML
+    private Text nemMezo;
     
     
 
@@ -168,6 +182,13 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
         oltasTipus.setText(oltasAzonosito + " / " + oltasNev);
         valasztOrvos.setText(valasztottOrvos);
         idopontText.setText(valasztottIdopont);
+        JPADAO dao = new JPADAO();
+        Szemely aktualisUser = dao.GetUserById(userID);
+        nevMezo.setText(aktualisUser.getNev());
+        tajMezo.setText("" + aktualisUser.getTAJ());
+        szulinapMezo.setText(format(aktualisUser.getSzuletesiDatum()));
+        nemMezo.setText(aktualisUser.getNem().toString());
+        
     }    
     
 }
