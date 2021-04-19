@@ -7,10 +7,12 @@ package hu.unideb.inf.controller;
  * and open the template in the editor.
  */
 
+import Extensions.SceneExtentions;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Vakcina;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -36,7 +40,7 @@ import javax.persistence.TypedQuery;
  *
  * @author Tamás Ádám
  */
-public class FXMLVakcinakController implements Initializable {
+public class FXMLVakcinakController extends SceneExtentions implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -46,6 +50,9 @@ public class FXMLVakcinakController implements Initializable {
     
     @FXML
     private ListView<String> oltasLista;
+    
+    @FXML
+    private Button fooldal;
     
     /*@FXML
     private Rating ertekeles; //dependenciesben hozzáadtam a controlsfx 11.1.0.jar-t
@@ -69,6 +76,12 @@ public class FXMLVakcinakController implements Initializable {
         
     
 
+    }
+
+
+    @FXML
+    void goBackToIndex(ActionEvent event) throws IOException {
+        ChangeScene(event, "FXMLindexScene");
     }
 
     @Override
@@ -98,6 +111,9 @@ public class FXMLVakcinakController implements Initializable {
         
        
         oltasLista.getItems().addAll(list);
+        
+
+
         
         /*
         ertekeles.setMouseTransparent(true); // ne lehessen modosítani, disable nemjo, mert elszürkiti

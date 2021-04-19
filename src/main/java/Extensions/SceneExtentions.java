@@ -92,7 +92,7 @@ public class SceneExtentions {
             {                
                 for (int i = 0; i < 10 - tmp.size(); i++) {
                     OrvosBeosztas beo = SceneExtentions.GenerateRandomDateTime();
-                    //item.beosztas.add(beo);                       
+                    item.beosztas.add(beo);                       
                     System.out.println(tmp.size() + "  " + item.getNev());
                     beo.orvos = item;
                     dao.save(beo);
@@ -111,9 +111,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(9);
+        oltas.vakcina = dao.GetVakcinaById(70);
         oltas.orvos = (Orvos) dao.GetOrvosById(2);
-        oltas.user = dao.GetUserById(1);
+        oltas.user = dao.GetUserById(63);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         

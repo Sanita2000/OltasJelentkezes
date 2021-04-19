@@ -33,39 +33,11 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        TablaFeltoltes.feltolt(); //betolti az orvosokat és a vakcinákat 
+
         SceneExtentions.RenderOrvosIdopont();
-        TablaFeltoltes.feltolt();
         
-        //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLOltasok.fxml"));
-        //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLVakcinak.fxml"));
-                          
-        JPADAO dao = new JPADAO();
-        Orvos o1 = new Orvos();
-        o1.setNev("Dr. Kis István");
-        
-        Orvos o2 = new Orvos();
-        o2.setNev("Dr. Nagy István");
-                
-        Orvos o3 = new Orvos();
-        o3.setNev("Dr. Közepes István");
-        dao.save(o3);
-        dao.save(o2);
-        dao.save(o1);
-        
-        Vakcina v1 = new Vakcina();
-        v1.setNev("vakcina1");
-        
-        Vakcina v2 = new Vakcina();
-        v2.setNev("vakcina2");
-        dao.save(v1);
-        dao.save(v2);
-        
-        Szemely f1 = new Szemely();
-        f1.setNev("Anitaa");
-        dao.save(f1);
-        
-        SceneExtentions.GenerateTestOltasEsemeny();
-        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLindexScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLLoginScene.fxml"));
 
         Scene scene = new Scene(loader.load());
         stage.setTitle("olTáska");

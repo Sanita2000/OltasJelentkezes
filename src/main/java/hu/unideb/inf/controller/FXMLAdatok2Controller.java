@@ -34,6 +34,8 @@ import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -140,7 +142,13 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             dao.save(oltas);
             //dao.update(vakcina);
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Sikeres jelentkezés");
+            alert.setHeaderText(null);
+            alert.setContentText("Ön sikeresen jelentkezett az oltásra!");
 
+            alert.showAndWait();
  
             
             ChangeScene(event, "FXMLindexScene");
