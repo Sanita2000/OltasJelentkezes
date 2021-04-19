@@ -72,7 +72,7 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
             JPADAO dao = new JPADAO();
             var currentOltas = oltasok.get(0);
             currentOltas.setVizsgalva(true);
-            String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont() + " időpontban?";
+            String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont().format(SceneExtentions.getFormatter()) + " időpontban?";
             kerdesLabel.setText(title);
             dao.update(currentOltas);
         }

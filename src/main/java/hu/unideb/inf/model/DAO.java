@@ -29,5 +29,6 @@ public interface DAO extends AutoCloseable{
     
     public List<OltasEsemeny> GetUserOltasEsemenyei(int userid);    
     
-    public Szemely GetUserById(int userid);
+    public Szemely GetUserById(int userid);    
+    
 }

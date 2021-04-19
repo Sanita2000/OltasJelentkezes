@@ -12,6 +12,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 import javafx.event.ActionEvent;
@@ -28,6 +29,14 @@ import javafx.stage.Stage;
 public class SceneExtentions {    
     
     static DAO dao = new JPADAO();
+    
+    public static DateTimeFormatter getFormatter()
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return formatter;
+    }
+    
+    
     
     public void ChangeScene(ActionEvent event, String scene_name) throws IOException
     {
