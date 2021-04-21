@@ -28,6 +28,7 @@
             <Font size="18.0" />
          </font>
       </Text>
-      <Button fx:id="info" layoutX="508.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleInfoButton" prefHeight="17.0" prefWidth="62.0" text="Info" />
+      <Button fx:id="info" layoutX="508.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleInfoButton" prefHeight="17.0" prefWidth="62.0" text="Info" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="18.0" />
+      <Button fx:id="fooldal" layoutX="28.0" layoutY="18.0" mnemonicParsing="false" onAction="#handleFooldal" prefHeight="17.0" prefWidth="62.0" text="Főoldal" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="18.0" />
    </children>
 </AnchorPane>
