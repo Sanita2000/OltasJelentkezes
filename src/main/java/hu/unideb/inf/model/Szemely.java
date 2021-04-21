@@ -5,7 +5,7 @@
  */
 package hu.unideb.inf.model;
 
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
@@ -29,21 +29,13 @@ public class Szemely {
     private int ID;
     private String nev;
     private int TAJ;
-    private GregorianCalendar SzuletesiDatum;
+    private LocalDate SzuletesiDatum;
     @Enumerated(EnumType.STRING)
     NemTipus nem;
 
     @OneToMany(mappedBy = "user")    
     public Set<OltasEsemeny> oltasEsemeny = new HashSet<>();
     
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
     public String getNev() {
         return nev;
     }
@@ -60,15 +52,13 @@ public class Szemely {
         this.TAJ = TAJ;
     }
 
-    public GregorianCalendar getSzuletesiDatum() {
+    public LocalDate getSzuletesiDatum() {
         return SzuletesiDatum;
     }
 
-    public void setSzuletesiDatum(GregorianCalendar SzuletesiDatum) {
+    public void setSzuletesiDatum(LocalDate SzuletesiDatum) {
         this.SzuletesiDatum = SzuletesiDatum;
     }
-
-
     
     public NemTipus getNem() {
         return nem;

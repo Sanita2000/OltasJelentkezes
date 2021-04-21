@@ -27,13 +27,17 @@ import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvos;
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasNev;
+import static hu.unideb.inf.controller.indexController.userID;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
+import hu.unideb.inf.model.Szemely;
 
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -45,7 +49,7 @@ import javax.persistence.TypedQuery;
 /**
  * FXML Controller class
  *
- * @author Tamás Ádám
+ * @author Tamás �?dám
  */
 public class FXMLAdatok2Controller extends SceneExtentions implements Initializable {
 
@@ -67,6 +71,17 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
     @FXML
     private Text hiba;
     
+    @FXML
+    private Text nevMezo;
+
+    @FXML
+    private Text tajMezo;
+
+    @FXML
+    private Text szulinapMezo;
+
+    @FXML
+    private Text nemMezo;
     
     
 
@@ -136,11 +151,18 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
+            oltas.user = dao.GetUserById(userID);
             //System.out.println(vakcina.beoltas);
 
             dao.save(oltas);
             //dao.update(vakcina);
+            
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Sikeres jelentkezés");
+            alert.setHeaderText(null);
+            alert.setContentText("Ön sikeresen jelentkezett az oltásra!");
 
+            alert.showAndWait();
  
             
             ChangeScene(event, "FXMLindexScene");
@@ -160,6 +182,13 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
         oltasTipus.setText(oltasAzonosito + " / " + oltasNev);
         valasztOrvos.setText(valasztottOrvos);
         idopontText.setText(valasztottIdopont);
+        JPADAO dao = new JPADAO();
+        Szemely aktualisUser = dao.GetUserById(userID);
+        nevMezo.setText(aktualisUser.getNev());
+        tajMezo.setText("" + aktualisUser.getTAJ());
+        szulinapMezo.setText(aktualisUser.getSzuletesiDatum().toString());
+        nemMezo.setText(aktualisUser.getNem().toString());
+        
     }    
     
 }

@@ -14,18 +14,25 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.TablaFeltoltes;
+import static hu.unideb.inf.controller.indexController.userID;
 import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -45,6 +52,8 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
      */
     public static int oltasAzonosito; 
     public static String oltasNev;
+    public static long eletkor;
+    private static boolean megfeleloKor;
     
     @FXML
     private Button btn1;
@@ -97,11 +106,17 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
     @FXML
     private Button info;
 
+    @FXML
+    private Button fooldal;
 
+    @FXML
+    void handleFooldal (ActionEvent event) throws IOException {
+        ChangeScene(event, "FXMLindexScene");
+    }
 
     @FXML
     void handleButtonPushed(ActionEvent event) throws IOException {
-         
+        megfeleloKor = true;
         String oltasID;
         String eventString = event.toString();
         //System.out.println(eventString);
@@ -112,6 +127,14 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
         //System.out.println("eventString ===>>>" + eventString + "<<<<====");
         //System.out.println(oltasID);
         JPADAO dao = new JPADAO();
+        LocalDate gc = dao.GetUserById(userID).getSzuletesiDatum();
+        LocalDate start = gc;
+        LocalDate end = LocalDate.now();
+        eletkor = ChronoUnit.YEARS.between(start, end);
+        System.out.println("Age : " + eletkor);
+
+        
+        
         List<Vakcina> oltasok = dao.getAllVakcina();
         switch (oltasID)
         {
@@ -128,16 +151,18 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
             case "btn11": oltasNev = oltasok.get(10).getNev(); oltasAzonosito=oltasok.get(10).getID(); break;
             case "btn12": oltasNev = oltasok.get(11).getNev(); oltasAzonosito=oltasok.get(11).getID(); break;
             case "btn13": oltasNev = oltasok.get(12).getNev(); oltasAzonosito=oltasok.get(12).getID(); break;
-            case "btn14": oltasNev = oltasok.get(13).getNev(); oltasAzonosito=oltasok.get(13).getID(); break;
-            case "btn15": oltasNev = oltasok.get(14).getNev(); oltasAzonosito=oltasok.get(14).getID(); break;
-            case "btn16": oltasNev = oltasok.get(15).getNev(); oltasAzonosito=oltasok.get(15).getID(); break;
+            case "btn14": if (eletkor >= 18) {oltasNev = oltasok.get(13).getNev(); oltasAzonosito=oltasok.get(13).getID(); break;} kiirAlert(); break;
+            case "btn15": if (eletkor >= 18) {oltasNev = oltasok.get(14).getNev(); oltasAzonosito=oltasok.get(14).getID(); break;} kiirAlert(); break;
+            case "btn16": if (eletkor >= 18) {oltasNev = oltasok.get(15).getNev(); oltasAzonosito=oltasok.get(15).getID(); break;} kiirAlert(); break;
             
             default: oltasNev = "Ismeretlen"; break;
         }
         
 
-        
-        ChangeScene(event, "FXMLAdatok");
+        if (megfeleloKor)
+        {
+            ChangeScene(event, "FXMLAdatok");
+        }
         
         
     }
@@ -152,5 +177,17 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
     public void initialize(URL url, ResourceBundle rb) {
         //TablaFeltoltes.feltolt();
     }    
+
+    private void kiirAlert() {
+            megfeleloKor = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hiba!");
+            alert.setHeaderText(null);
+            alert.setContentText("Ön túl fiatal ehhez az oltáshoz!");
+
+            alert.showAndWait();
+ 
+            
+    }
     
 }
