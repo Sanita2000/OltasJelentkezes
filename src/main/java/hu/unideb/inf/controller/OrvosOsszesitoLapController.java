@@ -53,7 +53,8 @@ public class OrvosOsszesitoLapController implements Initializable {
     void GoToIndexButtonPushed(ActionEvent event) throws IOException {
         
         SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLStudentsScene");
+        sc.ChangeScene(event, "FXMLindexScene");
+
     }
 
     /**

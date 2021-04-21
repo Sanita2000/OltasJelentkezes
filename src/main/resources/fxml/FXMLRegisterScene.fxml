@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLRegisterSceneController">
+   <children>
+      <Label layoutX="14.0" layoutY="8.0" prefHeight="32.0" prefWidth="145.0" text="Regisztráció">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="92.0" layoutY="66.0" text="E-mail cím:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="122.0" layoutY="110.0" text="Jelszó:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="24.0" layoutY="153.0" text="Jelszó megerősítése:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="131.0" layoutY="194.0" text="Név:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="237.0" text="TAJ-szám:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="280.0" text="Születési dátum:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="325.0" text="Nem:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="textemail" layoutX="204.0" layoutY="66.0" prefHeight="25.0" prefWidth="271.0" promptText="E-mail" />
+      <TextField fx:id="textnev" layoutX="204.0" layoutY="194.0" prefHeight="25.0" prefWidth="271.0" promptText="Anyakönyvezett neve" />
+      <TextField fx:id="texttaj" layoutX="204.0" layoutY="237.0" prefHeight="25.0" prefWidth="271.0" promptText="TAJ- szám" />
+      <PasswordField fx:id="textjelszo" alignment="TOP_LEFT" layoutX="204.0" layoutY="110.0" prefHeight="25.0" prefWidth="271.0" promptText="MInimum 8 karakter, tartalmaz kis- és nagybetűt" />
+      <PasswordField fx:id="textjelszoujra" layoutX="204.0" layoutY="153.0" prefHeight="25.0" prefWidth="271.0" promptText="Minimum 8 karakter, tartalmaz kis-, és nagybetűt" />
+      <ChoiceBox fx:id="textev" layoutX="204.0" layoutY="280.0" prefHeight="25.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="textnem" layoutX="204.0" layoutY="325.0" prefHeight="25.0" prefWidth="91.0" />
+      <Button layoutX="466.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" text="Regisztráció">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="363.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleVisszaButtonPressed" text="Vissza">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="texthonap" layoutX="300.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
+      <ChoiceBox fx:id="textnap" layoutX="375.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
+   </children>
+</AnchorPane>
