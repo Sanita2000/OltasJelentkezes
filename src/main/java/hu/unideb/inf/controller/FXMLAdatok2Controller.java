@@ -152,6 +152,7 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
+            oltas.user = dao.GetUserById(userID);
             //System.out.println(vakcina.beoltas);
 
             dao.save(oltas);
