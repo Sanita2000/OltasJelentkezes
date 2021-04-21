@@ -160,7 +160,8 @@ public class indexController implements Initializable {
             Szemely szemely = dao.GetUserById(userID);
             szemely.setNem(nemChoiceBox.getValue());
             szemely.setNev(nevTextField.getText());
-            szemely.setSzuletesiDatum(new GregorianCalendar(ev, --honap, nap));
+            szemely.setSzuletesiDatum(new GregorianCalendar(ev, honap, nap)); //innen kiszedtem a --honap, mert ha tovabbmegy az oltasra, és vissza
+                                                                                //akkor a beallitott honapot 1-el csökkenti, így viszont rendben lesz databaseben is jo
             szemely.setTAJ(Integer.parseInt(TAJTextField.getText()));
             dao.update(szemely);
             dao.save(szemely);
