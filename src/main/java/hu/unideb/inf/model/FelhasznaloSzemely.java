@@ -5,10 +5,6 @@
  */
 package hu.unideb.inf.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,20 +16,25 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 /**
  *
- * @author admin
+ * @author andra
  */
+        
 @Entity
-@Table(name="Felhasznalok")
-public class Felhasznalo {
+@Table(name="FelhasznaloSzemely")
+public class FelhasznaloSzemely {
+    
     @Id
     @GeneratedValue
     private int ID;
-    private int szemelyID;
     private String felhasznalonev;
     private String jelszo;
+    private String nev;
+    private int TAJ;
+    private GregorianCalendar SzuletesiDatum;
+    @Enumerated(EnumType.STRING)
+    NemTipus nem;
 
     public int getID() {
         return ID;
@@ -41,14 +42,6 @@ public class Felhasznalo {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public int getSzemelyID() {
-        return szemelyID;
-    }
-
-    public void setSzemelyID(int szemelyID) {
-        this.szemelyID = szemelyID;
     }
 
     public String getEmail() {
@@ -66,5 +59,48 @@ public class Felhasznalo {
     public void setJelszo(String jelszo) {
         this.jelszo = jelszo;
     }
-}
 
+    public String getNev() {
+        return nev;
+    }
+
+    public void setNev(String nev) {
+        this.nev = nev;
+    }
+
+    public int getTAJ() {
+        return TAJ;
+    }
+
+    public void setTAJ(int TAJ) {
+        this.TAJ = TAJ;
+    }
+
+    public GregorianCalendar getSzuletesiDatum() {
+        return SzuletesiDatum;
+    }
+
+    public void setSzuletesiDatum(GregorianCalendar SzuletesiDatum) {
+        this.SzuletesiDatum = SzuletesiDatum;
+    }
+    
+    public NemTipus getNem() {
+        return nem;
+    }
+
+    public void setNem(NemTipus nem) {
+        this.nem = nem;
+    }
+
+    public enum NemTipus{
+    FERFI,NO;
+    }
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    Set<OltasEsemeny> beoltas = new HashSet<>();
+    
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
+}
