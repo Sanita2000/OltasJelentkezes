@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLRegisterSceneController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLRegisterSceneController">
    <children>
-      <Label layoutX="14.0" layoutY="8.0" prefHeight="32.0" prefWidth="145.0" text="Regisztráció">
+      <Label layoutX="20.0" layoutY="14.0" prefHeight="32.0" prefWidth="145.0" text="Regisztráció">
          <font>
             <Font size="25.0" />
          </font>
@@ -55,19 +57,33 @@
       <TextField fx:id="texttaj" layoutX="204.0" layoutY="237.0" prefHeight="25.0" prefWidth="271.0" promptText="TAJ- szám" />
       <PasswordField fx:id="textjelszo" alignment="TOP_LEFT" layoutX="204.0" layoutY="110.0" prefHeight="25.0" prefWidth="271.0" promptText="MInimum 8 karakter, tartalmaz kis- és nagybetűt" />
       <PasswordField fx:id="textjelszoujra" layoutX="204.0" layoutY="153.0" prefHeight="25.0" prefWidth="271.0" promptText="Minimum 8 karakter, tartalmaz kis-, és nagybetűt" />
-      <ChoiceBox fx:id="textev" layoutX="204.0" layoutY="280.0" prefHeight="25.0" prefWidth="78.0" />
+      <ChoiceBox fx:id="textev" accessibleRole="DATE_PICKER" blendMode="DARKEN" layoutX="204.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="78.0" />
       <ChoiceBox fx:id="textnem" layoutX="204.0" layoutY="325.0" prefHeight="25.0" prefWidth="91.0" />
-      <Button layoutX="466.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" text="Regisztráció">
+      <Button layoutX="402.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleVisszaButtonPressed" text="Vissza">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button layoutX="363.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleVisszaButtonPressed" text="Vissza">
+      <ChoiceBox fx:id="texthonap" accessibleRole="DATE_PICKER" layoutX="300.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
+      <ChoiceBox fx:id="textnap" accessibleRole="DATE_PICKER" layoutX="375.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
+      <CheckBox fx:id="adatvedelemelfogadas" layoutX="550.0" layoutY="280.0" mnemonicParsing="false" text="CheckBox" />
+      <ScrollPane layoutX="550.0" layoutY="66.0" prefHeight="200.0" prefWidth="271.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="463.0" prefWidth="255.0">
+               <children>
+                  <Label fx:id="adatvedelemtext" layoutX="3.0" layoutY="-17.0" prefHeight="467.0" prefWidth="249.0">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button layoutX="766.0" layoutY="332.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" text="Regisztráció">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="texthonap" layoutX="300.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
-      <ChoiceBox fx:id="textnap" layoutX="375.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
    </children>
 </AnchorPane>
