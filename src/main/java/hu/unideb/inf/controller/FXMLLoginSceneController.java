@@ -6,14 +6,19 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
+import hu.unideb.inf.model.Felhasznalo;
+import hu.unideb.inf.model.FelhasznaloSzemely;
+import hu.unideb.inf.model.JPADAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
@@ -30,7 +35,33 @@ public class FXMLLoginSceneController implements Initializable{
 
     @FXML
     void handleBelepesButtonPressed(ActionEvent event) {
-
+        String email = textemail.getText();
+        String jelszo = textjelszo.getText();
+        
+        int counter = 0;
+        JPADAO jpadao = new JPADAO();
+        List<FelhasznaloSzemely> felhasznalo = jpadao.GetFelhasznaloSzemelyek();
+        for(int i = 0; i < felhasznalo.size(); i++) {
+            System.out.println("Email: " + felhasznalo.get(i).getEmail());
+            System.out.println("Jelszo: " + felhasznalo.get(i).getJelszo());
+            if(felhasznalo.get(i).getEmail().equals(email) && felhasznalo.get(i).getJelszo().equals(jelszo)) {
+                JOptionPane.showMessageDialog(null,
+                "Sikeres bejelentkezés!. Az átirányítás folyamatban",
+                "Üzenet",
+            JOptionPane.PLAIN_MESSAGE);
+            //SceneExtentions sc = new SceneExtentions();
+            //sc.ChangeScene(event, "FXMLindexScene");
+            counter = 1;
+            break;
+            }
+        }
+        if(counter != 1) {
+            JOptionPane.showMessageDialog(null,
+            "Hibás E-mail cím / Jelszó. Ha nem rendelkezik fiókkal, a regisztrációhoz kattintson a Regisztráció gombra",
+            "Hiba",
+            JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
 
     @FXML
