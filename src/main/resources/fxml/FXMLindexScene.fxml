@@ -4,6 +4,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -11,9 +13,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.indexController">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.indexController">
    <children>
-      <Button layoutX="180.0" layoutY="455.0" mnemonicParsing="false" onAction="#handleToJelentkezes" prefHeight="56.0" prefWidth="212.0" text="Jelentkezem">
+      <Button layoutX="185.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleToJelentkezes" prefHeight="56.0" prefWidth="212.0" text="Jelentkezem">
          <font>
             <Font size="30.0" />
          </font>
@@ -79,7 +81,15 @@
             <DatePicker fx:id="BDPicker" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button fx:id="Change" layoutX="32.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleChangeButton" text="Szerkesztés" />
+      <Button fx:id="Change" layoutX="28.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleChangeButton" text="Szerkesztés" />
       <Button fx:id="OKButton" layoutX="356.0" layoutY="274.0" mnemonicParsing="false" onAction="#OKButtonPushed" text="OK" visible="false" />
+      <TableView fx:id="korTortenetTabla" layoutX="129.0" layoutY="272.0" prefHeight="173.0" prefWidth="409.0">
+        <columns>
+          <TableColumn fx:id="idopontOszlop" prefWidth="159.0" text="időpont" />
+          <TableColumn fx:id="vakcinaOszlop" prefWidth="79.0" text="vakcina" />
+            <TableColumn fx:id="orvosOszlop" prefWidth="103.0" text="orvos" />
+            <TableColumn fx:id="megkaptaOszlop" prefWidth="67.0" text="megkapta" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

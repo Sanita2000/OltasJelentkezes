@@ -7,10 +7,17 @@ package hu.unideb.inf.controller;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.JPADAO;
+import hu.unideb.inf.model.KorTortenet;
+import hu.unideb.inf.model.OltasEsemeny;
+import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Szemely.NemTipus;
+import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +28,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
 
 public class indexController implements Initializable {
@@ -61,6 +71,21 @@ public class indexController implements Initializable {
 
     @FXML
     private Button OKButton;
+    
+    @FXML
+    private TableView<KorTortenet> korTortenetTabla;
+    
+    @FXML
+    private TableColumn<KorTortenet, LocalDateTime> idopontOszlop;
+
+    @FXML
+    private TableColumn<KorTortenet, String> vakcinaOszlop;
+
+    @FXML
+    private TableColumn<KorTortenet, String> orvosOszlop;
+
+    @FXML
+    private TableColumn<KorTortenet, String> megkaptaOszlop;
 
     public static boolean isNumeric(String strNum) {
     if (strNum == null) {
@@ -193,7 +218,37 @@ public class indexController implements Initializable {
         nemek.add(Szemely.NemTipus.NO);
         nemChoiceBox.setItems(nemek);
         nemChoiceBox.getSelectionModel().selectFirst();
-
+        
+        
+        
+        /*
+    private TableColumn<OltasEsemeny, LocalDateTime> idopontOszlop;
+    private TableColumn<Vakcina, String> vakcinaOszlop;
+    private TableColumn<Orvos, String> orvosOszlop;
+    private TableColumn<OltasEsemeny, String> megkaptaOszlop;
+        */
+        
+        
+        List<OltasEsemeny> osszes=dao.GetUserOltasEsemenyei(userID);
+        
+        idopontOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, LocalDateTime>("idopont"));
+        vakcinaOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("vakcina"));
+        orvosOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("orvos"));
+        megkaptaOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("megkapta"));
+        
+        
+        ObservableList<KorTortenet> adatok= FXCollections.observableArrayList();
+        
+        for(OltasEsemeny egyik : osszes)
+        {
+            KorTortenet uj=new KorTortenet();
+            uj.setIdopont(egyik.getIdopont());
+            uj.setOrvos(egyik.orvos.getNev());
+            uj.setVakcina(egyik.vakcina.getNev());
+            uj.setMegkapta(egyik.isMegkapta());
+            adatok.add(uj);
+        }
+        korTortenetTabla.setItems(adatok);
     }
 
 }
