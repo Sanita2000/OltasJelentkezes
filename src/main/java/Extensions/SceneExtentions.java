@@ -12,6 +12,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 import javafx.event.ActionEvent;
@@ -28,6 +29,14 @@ import javafx.stage.Stage;
 public class SceneExtentions {    
     
     static DAO dao = new JPADAO();
+    
+    public static DateTimeFormatter getFormatter()
+    {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return formatter;
+    }
+    
+    
     
     public void ChangeScene(ActionEvent event, String scene_name) throws IOException
     {
@@ -71,6 +80,18 @@ public class SceneExtentions {
         return _orvosbeosztas;        
     }
     
+    public static boolean IdopontUtkozes(OrvosBeosztas beo, List<OrvosBeosztas> beosztaslista)
+    {
+        for (int i = 0; i < beosztaslista.size(); i++) {
+            if (beosztaslista.get(i).getVegzesIdo().isAfter(beo.getKezdesIdo()))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public static void RenderOrvosIdopont()
     {
         List<Orvos> _orvosok = dao.getAllOrvos(); 
@@ -81,20 +102,21 @@ public class SceneExtentions {
             tmp.removeIf(p -> p.getKezdesIdo().isBefore(LocalDateTime.now()));
             if (tmp.size() < 10)
             {                
-                for (int i = 0; i < 10 - tmp.size(); i++) {
-                    OrvosBeosztas beo = SceneExtentions.GenerateRandomDateTime();
+                for (int i = 0; i < 10 - tmp.size(); i++) {                    
+                    OrvosBeosztas beo;
+                    do
+                    {
+                        beo = SceneExtentions.GenerateRandomDateTime();
+                    }
+                    while(IdopontUtkozes(beo, tmp));
                     //item.beosztas.add(beo);                       
                     System.out.println(tmp.size() + "  " + item.getNev());
                     beo.orvos = item;
                     dao.save(beo);
+                    tmp.add(beo);
                 }                                
             }
-        }    
-        
-        List<Orvos> __orvosok = dao.getAllOrvos(); 
-        System.out.println("Orvosok száma: " + __orvosok.size());
-        
-        
+        }            
     }
     
     public static void GenerateTestOltasEsemeny()
@@ -102,9 +124,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(5);
+        oltas.vakcina = dao.GetVakcinaById(9);
         oltas.orvos = (Orvos) dao.GetOrvosById(2);
-        oltas.user = dao.GetUserById(7);
+        oltas.user = dao.GetUserById(1);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
@@ -118,4 +140,6 @@ public class SceneExtentions {
         System.out.println("vizsg");
         return esemenyek;        
     }
+    
+    
 }

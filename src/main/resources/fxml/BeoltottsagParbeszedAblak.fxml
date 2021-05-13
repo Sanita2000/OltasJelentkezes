@@ -9,7 +9,7 @@
    <children>
       <Label fx:id="kerdesLabel" layoutX="26.0" layoutY="39.0" prefHeight="100.0" prefWidth="557.0" textAlignment="CENTER">
          <font>
-            <Font size="13.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Button layoutX="114.0" layoutY="246.0" mnemonicParsing="false" onAction="#OnIgenButtonClicked" prefHeight="62.0" prefWidth="107.0" text="Igen" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="120.0">

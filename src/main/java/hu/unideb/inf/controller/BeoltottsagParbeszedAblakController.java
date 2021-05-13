@@ -34,8 +34,9 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
     private Label kerdesLabel;
 
     @FXML
-    void OnIgenButtonClicked(ActionEvent event) {
-        //to értékelés
+    void OnIgenButtonClicked(ActionEvent event) throws IOException {
+        SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "FXMLErtekelesScene");
     }
 
     @FXML
@@ -79,3 +80,4 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
     }
 
 }
+

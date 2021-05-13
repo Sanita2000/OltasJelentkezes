@@ -34,12 +34,12 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         SceneExtentions.RenderOrvosIdopont();
-        //TablaFeltoltes.feltolt();
+        TablaFeltoltes.feltolt();
         
         //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLOltasok.fxml"));
         //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLVakcinak.fxml"));
                           
-        /*JPADAO dao = new JPADAO();
+        JPADAO dao = new JPADAO();
         Orvos o1 = new Orvos();
         o1.setNev("Dr. Kis István");
         
@@ -62,12 +62,13 @@ public class MainApp extends Application {
         
         Szemely f1 = new Szemely();
         f1.setNev("Anitaa");
-        dao.save(f1);*/
+        dao.save(f1);
+        
         SceneExtentions.GenerateTestOltasEsemeny();
-        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLStudentsScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLindexScene.fxml"));
 
         Scene scene = new Scene(loader.load());
-        stage.setTitle("Oltás választó");
+        stage.setTitle("olTáska");
         stage.setScene(scene);
         stage.show();
     }

@@ -1,3 +1,4 @@
+
 package hu.unideb.inf.controller;
 
 /*
@@ -137,6 +138,3 @@ public class FXMLVakcinakController implements Initializable {
     }
 
 }
-    
-
-
