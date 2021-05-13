@@ -80,6 +80,18 @@ public class SceneExtentions {
         return _orvosbeosztas;        
     }
     
+    public static boolean IdopontUtkozes(OrvosBeosztas beo, List<OrvosBeosztas> beosztaslista)
+    {
+        for (int i = 0; i < beosztaslista.size(); i++) {
+            if (beosztaslista.get(i).getVegzesIdo().isAfter(beo.getKezdesIdo()))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
     public static void RenderOrvosIdopont()
     {
         List<Orvos> _orvosok = dao.getAllOrvos(); 
@@ -90,20 +102,21 @@ public class SceneExtentions {
             tmp.removeIf(p -> p.getKezdesIdo().isBefore(LocalDateTime.now()));
             if (tmp.size() < 10)
             {                
-                for (int i = 0; i < 10 - tmp.size(); i++) {
-                    OrvosBeosztas beo = SceneExtentions.GenerateRandomDateTime();
+                for (int i = 0; i < 10 - tmp.size(); i++) {                    
+                    OrvosBeosztas beo;
+                    do
+                    {
+                        beo = SceneExtentions.GenerateRandomDateTime();
+                    }
+                    while(IdopontUtkozes(beo, tmp));
                     //item.beosztas.add(beo);                       
                     System.out.println(tmp.size() + "  " + item.getNev());
                     beo.orvos = item;
                     dao.save(beo);
+                    tmp.add(beo);
                 }                                
             }
-        }    
-        
-        List<Orvos> __orvosok = dao.getAllOrvos(); 
-        System.out.println("Orvosok száma: " + __orvosok.size());
-        
-        
+        }            
     }
     
     public static void GenerateTestOltasEsemeny()
@@ -127,4 +140,6 @@ public class SceneExtentions {
         System.out.println("vizsg");
         return esemenyek;        
     }
+    
+    
 }

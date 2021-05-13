@@ -37,7 +37,7 @@ import javax.swing.JOptionPane;
 
 public class indexController implements Initializable {
 
-    public static int userID = 317;
+    public static int userID = 1;
 
     public static int ev = 0;
     public static int honap = 0;

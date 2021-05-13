@@ -34,8 +34,9 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
     private Label kerdesLabel;
 
     @FXML
-    void OnIgenButtonClicked(ActionEvent event) {
-        //to értékelés
+    void OnIgenButtonClicked(ActionEvent event) throws IOException {
+        SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "FXMLErtekelesScene");
     }
 
     @FXML
@@ -72,10 +73,11 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
             JPADAO dao = new JPADAO();
             var currentOltas = oltasok.get(0);
             currentOltas.setVizsgalva(true);
-            String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont().format(SceneExtentions.getFormatter()) + " időpontban?";
+            String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont() + " időpontban?";
             kerdesLabel.setText(title);
             dao.update(currentOltas);
         }
     }
 
 }
+

@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -70,7 +69,6 @@ public class OrvosOsszesitoLapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        System.out.println("\n\ninit scece");
         List<Orvos> dokik =dao.getAllOrvos(); 
         List<OrvosDisplayViewModel> orvos_dvm = new ArrayList<OrvosDisplayViewModel>();
         
@@ -114,3 +112,4 @@ public class OrvosOsszesitoLapController implements Initializable {
     }
 
 }
+

@@ -17,7 +17,7 @@ public class Nevesitett_konst {
     public static double DEFAULT_VACCINE_TIME_IN_HOURS = 0.5;
     
     //Orvosok szabadisőpont generálásához:
-    public static int MAX_DAY_TO_ADD = 7;
+    public static int MAX_DAY_TO_ADD = 12;
     
     public static List<Integer> FOGLALT1 = new ArrayList<>();
     public static List<Integer> FOGLALT2 = new ArrayList<>();
