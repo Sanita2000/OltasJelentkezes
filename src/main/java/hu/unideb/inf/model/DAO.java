@@ -26,13 +26,8 @@ public interface DAO extends AutoCloseable{
     
     public Vakcina GetVakcinaById(int id);
     public Orvos GetOrvosById(int id);
-    
     public List<OltasEsemeny> GetUserOltasEsemenyei(int userid);    
-    
-    public Szemely GetUserById(int userid);
-    
-    public Felhasznalo GetFelhasznaloById(int userid);
-    
+    public FelhasznaloSzemely GetUserById(int userid);
     public List<FelhasznaloSzemely> GetFelhasznaloSzemelyek();
-    
+    public List<OrvosBeosztas> GetOrvosIdopontok(int id);  
 }

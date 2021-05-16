@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.OrvosOsszesitoLapController">
+   <children>
+      <Label layoutX="240.0" layoutY="20.0" prefHeight="39.0" prefWidth="120.0" text="Összes orvos" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="460.0" layoutY="347.0" mnemonicParsing="false" onAction="#GoToIndexButtonPushed" text="Vissza a főoldalra" />
+      <TableView fx:id="orvosTable" layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="nameColumn" prefWidth="150" text="Név" />
+          <TableColumn fx:id="rateColumn" prefWidth="200" text="Értékelés" />
+          <TableColumn fx:id="idopontColumn" prefWidth="250" text="Következő rendelés" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

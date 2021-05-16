@@ -6,7 +6,6 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
-import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import java.io.IOException;
@@ -27,6 +26,14 @@ import javax.swing.JOptionPane;
 
 public class FXMLLoginSceneController implements Initializable{
 
+public FXMLLoginSceneController(){
+    
+}
+    
+    
+
+    public static FelhasznaloSzemely belepett = new FelhasznaloSzemely();
+    
     @FXML
     private TextField textemail;
 
@@ -34,7 +41,7 @@ public class FXMLLoginSceneController implements Initializable{
     private PasswordField textjelszo;
 
     @FXML
-    void handleBelepesButtonPressed(ActionEvent event) throws IOException {
+    public void handleBelepesButtonPressed(ActionEvent event) throws IOException {
         String email = textemail.getText();
         String jelszo = textjelszo.getText();
         
@@ -45,6 +52,9 @@ public class FXMLLoginSceneController implements Initializable{
             System.out.println("Email: " + felhasznalo.get(i).getEmail());
             System.out.println("Jelszo: " + felhasznalo.get(i).getJelszo());
             if(felhasznalo.get(i).getEmail().equals(email) && felhasznalo.get(i).getJelszo().equals(jelszo)) {
+                
+                belepett = felhasznalo.get(i);
+                
                 JOptionPane.showMessageDialog(null,
                 "Sikeres bejelentkezés!. Az átirányítás folyamatban",
                 "Üzenet",
@@ -60,8 +70,7 @@ public class FXMLLoginSceneController implements Initializable{
             "Hibás E-mail cím / Jelszó. Ha nem rendelkezik fiókkal, a regisztrációhoz kattintson a Regisztráció gombra",
             "Hiba",
             JOptionPane.ERROR_MESSAGE);
-        }
-        
+        }      
     }
 
     @FXML

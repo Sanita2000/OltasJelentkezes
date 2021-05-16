@@ -6,12 +6,11 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
-import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
-import hu.unideb.inf.model.Szemely;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -53,15 +53,6 @@ public class FXMLRegisterSceneController implements Initializable{
     private PasswordField textjelszoujra;
 
     @FXML
-    private ChoiceBox<Integer> textev;
-
-    @FXML
-    private ChoiceBox<Integer> texthonap;
-
-    @FXML
-    private ChoiceBox<Integer> textnap;
-
-    @FXML
     private ChoiceBox<String> textnem;
     
     @FXML
@@ -69,6 +60,9 @@ public class FXMLRegisterSceneController implements Initializable{
     
     @FXML
     private CheckBox adatvedelemelfogadas;
+    
+    @FXML
+    private DatePicker BDPicker;
 
 
     @FXML
@@ -77,6 +71,7 @@ public class FXMLRegisterSceneController implements Initializable{
         final EntityManager entityManager = entityManagerFactory.createEntityManager();
         //Felhasználó adatai
         String email = textemail.getText();
+        System.out.println(email);
         String jelszo = textjelszo.getText();
         String jelszoujra = textjelszo.getText();
         
@@ -84,27 +79,28 @@ public class FXMLRegisterSceneController implements Initializable{
         String nev = textnev.getText();
         int taj = Integer.parseInt(texttaj.getText());
         String nem = textnem.getValue();
-        int ev = Integer.parseInt(textev.getValue().toString());
-        int honap = Integer.parseInt(texthonap.getValue().toString());
-        int nap = Integer.parseInt(textnap.getValue().toString());
-        GregorianCalendar szuletesidatum = new GregorianCalendar(ev, honap, nap);
-            
+        LocalDate szuletesidatum = BDPicker.getValue();
+             
         boolean f = true;
         JPADAO jpadao = new JPADAO();
         List<FelhasznaloSzemely> felhasznalo = jpadao.GetFelhasznaloSzemelyek();
+        System.out.println("A felhasználók száma: "+ felhasznalo.size());
         for(int i = 0; i < felhasznalo.size(); i++) {
             System.out.println("Email: " + felhasznalo.get(i).getEmail());
-            if(felhasznalo.get(i).getEmail().equals(email)) {
-                f = false;
+            if(felhasznalo.get(i).getEmail() != null) {
+                if(felhasznalo.get(i).getEmail().equals(email))
+                {
+                   f = false;
+                }
             }
         }
+        
         System.out.println("Felhasználók beolvasva ");
         //Adatok tesztelése
         boolean a = ErvenyesEmail(email);
         boolean b = ErvenyesJelszo(jelszo, jelszoujra);
         boolean c = ErvenyesNev(nev);
         boolean d = ErvenyesTaj(taj);
-        boolean e = ErvenyesDátum(ev, honap, nap);
         boolean g = adatvedelemelfogadas.isSelected();
         
         String hiba = "";
@@ -112,11 +108,10 @@ public class FXMLRegisterSceneController implements Initializable{
         if(b == false) hiba = hiba + ("A jelszó, minimum 8 karakter tartalmaznia kell kis és nagybetűket. \n"); 
         if(c == false) hiba = hiba + ("A név nem megfelelő. \n"); 
         if(d == false) hiba = hiba + ("A tajszám nem megfelelő. \n"); 
-        if(e == false) hiba = hiba + ("A dátum nem megfelelő. \n"); 
         if(f == false) hiba = hiba + ("Ez az e-mail-cím már használatban van. Ha már rendelkezk fiókkal, kérem, jelentkezzen be. \n");
         if(g == false) hiba = hiba + ("A regisztációhoz fogadja el az adatkezelési tájékoztatóban foglaltakat.\n");
         
-        if(a && b && c && d && e && f && g)
+        if(a && b && c && d && f && g)
         {
             System.err.println("Adatok elfogadva, Felhasználó létrhozása");
             //Felhasználó példányosítása
@@ -158,9 +153,7 @@ public class FXMLRegisterSceneController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nemBetolto();
-        evBetolto();
-        honapBetolto();
-        napBetolto();
+
         adatvedelemelfogadas.setText("Megismertem és elfogadom az adatkezelési \n" +
                                     "tájékoztatóban foglaltakat az adataim továbbítása céljából");
         adatvedelemtext.setText("ADATKEZELÉSI TÁJÉKOZTATÓ\n" + 
@@ -199,27 +192,6 @@ public class FXMLRegisterSceneController implements Initializable{
         nemek.addAll("Férfi", "Nő");
         textnem.getItems().addAll(nemek);
     }
-    
-    private void evBetolto() {
-        evek.removeAll(evek);
-        for(int i = 2021; i >= 1900; i--)
-        evek.addAll(i);
-        textev.getItems().addAll(evek);
-    }
-    
-    private void honapBetolto() {
-        honapok.removeAll(honapok);
-        for(int i = 1; i <= 12; i++)
-            honapok.addAll(i);
-        texthonap.getItems().addAll(honapok);
-    }
-    
-    private void napBetolto() {
-        napok.removeAll(napok);
-        for(int i = 1; i <= 31; i++)
-            napok.addAll(i);
-        textnap.getItems().addAll(napok);
-    }
 
     public boolean ErvenyesEmail(String email) {
         return email.contains("@") && email.lastIndexOf("@") < email.lastIndexOf(".");
@@ -248,15 +220,5 @@ public class FXMLRegisterSceneController implements Initializable{
     private boolean ErvenyesTaj(int taj) {
         String tajszam = String.valueOf(taj);
         return tajszam.length() == 9 && tajszam.charAt(0) != '0';
-    }
-
-    private boolean ErvenyesDátum(int ev, int honap, int nap) {
-        if(ev/4 == 0 && ev != 1900 && honap == 2 && (nap == 30 || nap == 31))
-            return false;
-        else if((honap == 4 || honap == 6 || honap == 9 || honap == 11 )&& (nap == 31))
-            return false;
-        else if((honap == 2) && (nap == 29 || nap == 30 || nap == 31))
-            return false;
-        return true;
     }
 }

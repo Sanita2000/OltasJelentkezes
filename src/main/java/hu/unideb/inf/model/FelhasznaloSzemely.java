@@ -5,6 +5,7 @@
  */
 package hu.unideb.inf.model;
 
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,9 +33,17 @@ public class FelhasznaloSzemely {
     private String jelszo;
     private String nev;
     private int TAJ;
-    private GregorianCalendar SzuletesiDatum;
+    private LocalDate SzuletesiDatum;
     @Enumerated(EnumType.STRING)
     NemTipus nem;
+
+    public LocalDate getSzuletesiDatum() {
+        return SzuletesiDatum;
+    }
+
+    public void setSzuletesiDatum(LocalDate SzuletesiDatum) {
+        this.SzuletesiDatum = SzuletesiDatum;
+    }
 
     public int getID() {
         return ID;
@@ -75,14 +84,6 @@ public class FelhasznaloSzemely {
     public void setTAJ(int TAJ) {
         this.TAJ = TAJ;
     }
-
-    public GregorianCalendar getSzuletesiDatum() {
-        return SzuletesiDatum;
-    }
-
-    public void setSzuletesiDatum(GregorianCalendar SzuletesiDatum) {
-        this.SzuletesiDatum = SzuletesiDatum;
-    }
     
     public NemTipus getNem() {
         return nem;
@@ -103,4 +104,6 @@ public class FelhasznaloSzemely {
     @OneToMany
     @JoinColumn(name = "user_id")
     Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
+    
+    
 }

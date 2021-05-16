@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
@@ -57,15 +58,12 @@
       <TextField fx:id="texttaj" layoutX="204.0" layoutY="237.0" prefHeight="25.0" prefWidth="271.0" promptText="TAJ- szám" />
       <PasswordField fx:id="textjelszo" alignment="TOP_LEFT" layoutX="204.0" layoutY="110.0" prefHeight="25.0" prefWidth="271.0" promptText="MInimum 8 karakter, tartalmaz kis- és nagybetűt" />
       <PasswordField fx:id="textjelszoujra" layoutX="204.0" layoutY="153.0" prefHeight="25.0" prefWidth="271.0" promptText="Minimum 8 karakter, tartalmaz kis-, és nagybetűt" />
-      <ChoiceBox fx:id="textev" accessibleRole="DATE_PICKER" blendMode="DARKEN" layoutX="204.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="78.0" />
       <ChoiceBox fx:id="textnem" layoutX="204.0" layoutY="325.0" prefHeight="25.0" prefWidth="91.0" />
       <Button layoutX="402.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleVisszaButtonPressed" text="Vissza">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="texthonap" accessibleRole="DATE_PICKER" layoutX="300.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
-      <ChoiceBox fx:id="textnap" accessibleRole="DATE_PICKER" layoutX="375.0" layoutY="280.0" prefHeight="25.0" prefWidth="53.0" />
       <CheckBox fx:id="adatvedelemelfogadas" layoutX="550.0" layoutY="280.0" mnemonicParsing="false" text="CheckBox" />
       <ScrollPane layoutX="550.0" layoutY="66.0" prefHeight="200.0" prefWidth="271.0">
         <content>
@@ -85,5 +83,6 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <DatePicker fx:id="BDPicker" layoutX="208.0" layoutY="280.0" />
    </children>
 </AnchorPane>
