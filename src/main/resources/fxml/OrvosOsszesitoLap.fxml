@@ -15,10 +15,11 @@
          </font>
       </Label>
       <Button layoutX="460.0" layoutY="347.0" mnemonicParsing="false" onAction="#GoToIndexButtonPushed" text="Vissza a főoldalra" />
-      <TableView fx:id="orvosTable" layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="482.0">
+      <TableView fx:id="orvosTable" layoutX="59.0" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
         <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="325.3333320617676" text="Név" />
-          <TableColumn fx:id="rateColumn" prefWidth="156.66671752929688" text="Értékelés" />
+          <TableColumn fx:id="nameColumn" prefWidth="150" text="Név" />
+          <TableColumn fx:id="rateColumn" prefWidth="200" text="Értékelés" />
+          <TableColumn fx:id="idopontColumn" prefWidth="250" text="Következő rendelés" />
         </columns>
       </TableView>
    </children>

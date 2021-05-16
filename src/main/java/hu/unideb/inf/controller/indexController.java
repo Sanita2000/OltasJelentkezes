@@ -36,7 +36,7 @@ import javax.swing.JOptionPane;
 
 public class indexController implements Initializable {
 
-    public static int userID = 1;
+    public static int userID = 33;
 
     public static int ev = 0;
     public static int honap = 0;
@@ -207,7 +207,7 @@ public class indexController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       
         DAO dao = new JPADAO();
-        Szemely szemely = dao.GetUserById(77);
+        Szemely szemely = dao.GetUserById(userID);
         nevLabel.setText(szemely.getNev());
         nemLabel.setText(szemely.getNem().toString());
         SzuletesiDatumLabel.setText(szemely.getSzuletesiDatum().toString());

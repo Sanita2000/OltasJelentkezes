@@ -66,7 +66,7 @@ public class MainApp extends Application {
         dao.save(f1);*/
         
         SceneExtentions.GenerateTestOltasEsemeny();
-        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/BeoltottsagParbeszedAblak.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLindexScene.fxml"));
 
         Scene scene = new Scene(loader.load());
         stage.setTitle("olTáska");

@@ -10,12 +10,14 @@ import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.Szemely;
+import hu.unideb.inf.model.OrvosBeosztas;
+import hu.unideb.inf.model.OrvosDisplayViewModel;
 import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.net.URL;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,14 +41,16 @@ public class OrvosOsszesitoLapController implements Initializable {
     
     /*TableView<Orvos> table;*/
     @FXML
-    private TableView<Orvos> orvosTable;
+    private TableView<OrvosDisplayViewModel> orvosTable;
 
     @FXML
-    private TableColumn<Orvos, String> nameColumn;
+    private TableColumn<OrvosDisplayViewModel, String> nameColumn;
 
     @FXML
-    private TableColumn<Orvos, Float> rateColumn;
+    private TableColumn<OrvosDisplayViewModel, Rating> rateColumn;
     
+    @FXML
+    private TableColumn<OrvosDisplayViewModel, String> idopontColumn;
     
     
                    
@@ -66,14 +70,34 @@ public class OrvosOsszesitoLapController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         List<Orvos> dokik =dao.getAllOrvos(); 
-        System.out.println(dokik);
+        List<OrvosDisplayViewModel> orvos_dvm = new ArrayList<OrvosDisplayViewModel>();
+        
+        for (Orvos item : dokik) {
+            OrvosDisplayViewModel currentObj = new OrvosDisplayViewModel();
+            currentObj.name = item.getNev();
+            currentObj.rating = makeRating((double)item.getErtekeles());
+            List<OrvosBeosztas> tmp = dao.GetOrvosBeosztas(item);
+            if (tmp.size() > 0)
+            {                
+                OrvosBeosztas beo = tmp.get(0);                
+                String kezdes = beo.getKezdesIdo().format(SceneExtentions.getFormatter());
+                String vege = beo.getVegzesIdo().format(SceneExtentions.getFormatter());
+                currentObj.idopont = kezdes + " - " + vege;
+            }
+            else
+            {
+                currentObj.idopont = "Nem található időpont!";
+            }
+            orvos_dvm.add(currentObj);
+        }
        
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Orvos, String>("nev"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         
         
-        rateColumn.setCellValueFactory(new PropertyValueFactory<>("ertekeles"));
+        idopontColumn.setCellValueFactory(new PropertyValueFactory<>("idopont") );
+        rateColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
         
-        ObservableList<Orvos> orvosok = FXCollections.observableArrayList(dokik);
+        ObservableList<OrvosDisplayViewModel> orvosok = FXCollections.observableArrayList(orvos_dvm);
         orvosTable.setItems(orvosok);
     }
     
@@ -87,4 +111,3 @@ public class OrvosOsszesitoLapController implements Initializable {
     }
 
 }
-
