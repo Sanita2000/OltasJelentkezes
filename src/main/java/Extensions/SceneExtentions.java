@@ -69,17 +69,26 @@ public class SceneExtentions {
             nap = today.plusDays(randint);                
         }
         while(nap.getDayOfWeek() == DayOfWeek.SUNDAY || nap.getDayOfWeek() == DayOfWeek.SATURDAY);
+                
             
         //System.out.println("generált: " + nap);
         
         //random kezdő- és végidőpont generálása
         int randKezdo = rand.nextInt(9) + 7;       //8 és 17 közötti random szám
+        int init = rand.nextInt() % 3;
         int randintervall = rand.nextInt(18 - randKezdo + 1) + 1;
-        
         OrvosBeosztas _orvosbeosztas = new OrvosBeosztas();
-                
+        
+        if(init == 0)
+        {
+        _orvosbeosztas.setKezdesIdo(LocalDateTime.of(nap, LocalTime.of(randKezdo, 30, 0, 0)));
+        _orvosbeosztas.setVegzesIdo(LocalDateTime.of(nap, LocalTime.of(randKezdo, 59, 0, 0)));          
+        }
+        else
+        {
         _orvosbeosztas.setKezdesIdo(LocalDateTime.of(nap, LocalTime.of(randKezdo, 0, 0, 0)));
-        _orvosbeosztas.setVegzesIdo(LocalDateTime.of(nap, LocalTime.of(randKezdo + randintervall, 0, 0, 0)));
+        _orvosbeosztas.setVegzesIdo(LocalDateTime.of(nap, LocalTime.of(randKezdo, 29, 0, 0)));
+        }
         
         return _orvosbeosztas;        
     }
@@ -128,9 +137,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(54);
-        oltas.orvos = (Orvos) dao.GetOrvosById(34);
-        oltas.user = dao.GetUserById(33);
+        oltas.vakcina = dao.GetVakcinaById(10);
+        oltas.orvos = (Orvos) dao.GetOrvosById(2);
+        oltas.user = dao.GetUserById(1);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
@@ -139,7 +148,7 @@ public class SceneExtentions {
     
     public static List<OltasEsemeny> CheckPastOltasEsemenyek()
     {
-        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(77);
+        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(1);
         esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) || e.isVizsgalva());
         System.out.println("vizsg");
         return esemenyek;        
