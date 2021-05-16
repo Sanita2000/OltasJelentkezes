@@ -19,6 +19,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import Extensions.SceneExtentions;
+import static hu.unideb.inf.controller.FXMLAdatokController.fontos;
+import static hu.unideb.inf.controller.FXMLAdatokController.formatter;
 import static hu.unideb.inf.controller.FXMLAdatokController.idopontok;
 import static hu.unideb.inf.controller.FXMLAdatokController.index;
 import static hu.unideb.inf.controller.FXMLAdatokController.kiegeszit;
@@ -31,10 +33,12 @@ import static hu.unideb.inf.controller.indexController.userID;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
+import hu.unideb.inf.model.OrvosBeosztas;
 import hu.unideb.inf.model.Szemely;
 
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -49,7 +53,7 @@ import javax.persistence.TypedQuery;
 /**
  * FXML Controller class
  *
- * @author Tamás �?dám
+ * @author Tamás �?dám
  */
 public class FXMLAdatok2Controller extends SceneExtentions implements Initializable {
 
@@ -148,6 +152,33 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             //Vakcina vakcina = vakcinak.get(0);
             //vakcina.beoltas.add(oltas);
+            List<Orvos> orvosok = dao.getAllOrvos();
+            List<OrvosBeosztas> beosztasok = dao.GetOrvosBeosztas(orvosok.get(fontos));
+            List<Integer> ids = new ArrayList<>();
+            for(int j = 0; j < beosztasok.size(); j++)
+            {
+                ids.add(beosztasok.get(j).getID());
+            }
+
+
+            for(int i = 0; i < beosztasok.size(); i++)
+            {
+                String formattedDateTime = beosztasok.get(i).getKezdesIdo().format(formatter).replace("T", " ");
+
+                if(formattedDateTime.equals(valasztottIdopont))
+                {
+                    int id = ids.get(i);
+                    System.out.println("VALASZTOTT");
+                    System.out.println(formattedDateTime);
+                    List<OrvosBeosztas> ido = dao.GetOrvosIdopontok(id);
+                    OrvosBeosztas azonosito = ido.get(0);
+                    dao.delete(azonosito);
+                }
+                //System.out.println(formattedDateTime);
+                //System.out.println(valasztottIdopont);
+
+            }
+        
 
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);

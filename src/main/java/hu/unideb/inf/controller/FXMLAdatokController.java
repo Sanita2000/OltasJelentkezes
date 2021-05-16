@@ -69,7 +69,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
     public static int kiegeszit; // adatok2-ben hogy melyik foglalt-ba töltse az indexet
     
     List<Orvos> orvosok = dao.getAllOrvos();
-    int fontos;
+    public static int fontos;
     static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     
     @FXML
@@ -115,32 +115,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
 
         System.out.println("Datum " + valasztottIdopont);
         
-        List<OrvosBeosztas> beosztasok = dao.GetOrvosBeosztas(orvosok.get(fontos));
-        List<Integer> ids = new ArrayList<>();
-        for(int j = 0; j < beosztasok.size(); j++)
-        {
-            ids.add(beosztasok.get(j).getID());
-        }
-        
-        
-        for(int i = 0; i < beosztasok.size(); i++)
-        {
-            String formattedDateTime = beosztasok.get(i).getKezdesIdo().format(formatter).replace("T", " ");
- 
-            if(formattedDateTime.equals(valasztottIdopont))
-            {
-                int id = ids.get(i);
-                System.out.println("VALASZTOTT");
-                System.out.println(formattedDateTime);
-                List<OrvosBeosztas> ido = dao.GetOrvosIdopontok(id);
-                OrvosBeosztas azonosito = ido.get(0);
-                dao.delete(azonosito);
-            }
-            //System.out.println(formattedDateTime);
-            //System.out.println(valasztottIdopont);
 
-        }
-        
         //System.out.println("index " + index);
         ChangeScene(event, "FXMLAdatok2");
     }
