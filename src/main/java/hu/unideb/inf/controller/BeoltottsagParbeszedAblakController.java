@@ -6,6 +6,7 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
+import hu.unideb.inf.MainApp;
 import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
@@ -19,10 +20,13 @@ import java.time.LocalDateTime;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -30,12 +34,16 @@ import javafx.scene.control.Label;
 
 public class BeoltottsagParbeszedAblakController implements Initializable {
     
+    OltasEsemeny currentoltasesemeny;
+    
     @FXML
     private Label kerdesLabel;
 
     @FXML
-    void OnIgenButtonClicked(ActionEvent event) {
-        //to értékelés
+    void OnIgenButtonClicked(ActionEvent event) throws IOException {
+        SceneExtentions.aktualis_oltasesemeny = currentoltasesemeny;
+        SceneExtentions sc = new SceneExtentions();
+        sc.ChangeScene(event, "FXMLErtekelesScene");
     }
 
     @FXML
@@ -49,7 +57,6 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
         {
             SceneExtentions sc = new SceneExtentions();
             sc.ChangeScene(event, "FXMLStudentsScene");
-            System.out.println("Nincs több oltása");
         }
     }
 
@@ -58,10 +65,14 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
      */    
     @Override
     public void initialize(URL url, ResourceBundle rb) {        
-        Init();
+        try {
+            Init();
+        } catch (IOException ex) {
+            Logger.getLogger(BeoltottsagParbeszedAblakController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void Init()
+    public void Init() throws IOException
     {
         List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
         for (int i = 0; i < oltasok.size(); i++) {
@@ -70,12 +81,13 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
         if (oltasok.size() != 0)
         {
             JPADAO dao = new JPADAO();
-            var currentOltas = oltasok.get(0);
-            currentOltas.setVizsgalva(true);
-            String title = String.format("Megkapta a(z) %s oltást ", currentOltas.vakcina.getNev()) + currentOltas.getIdopont() + " időpontban?";
+            currentoltasesemeny = oltasok.get(0);
+            currentoltasesemeny.setVizsgalva(true);
+            String title = String.format("Megkapta a(z) %s oltást ", currentoltasesemeny.vakcina.getNev()) + currentoltasesemeny.getIdopont() + " időpontban?";
             kerdesLabel.setText(title);
-            dao.update(currentOltas);
+            dao.update(currentoltasesemeny);
         }
     }
 
 }
+

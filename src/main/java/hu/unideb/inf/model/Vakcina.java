@@ -27,6 +27,15 @@ public class Vakcina {
     private String nev;
     private String leiras;
     private float ertekeles;
+    private int ertekeles_dbszam;
+
+    public int getErtekeles_dbszam() {
+        return ertekeles_dbszam;
+    }
+
+    public void setErtekeles_dbszam(int ertekeles_dbszam) {
+        this.ertekeles_dbszam = ertekeles_dbszam;
+    }
 
     public int getID() {
         return ID;

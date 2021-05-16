@@ -207,7 +207,7 @@ public class indexController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       
         DAO dao = new JPADAO();
-        Szemely szemely = dao.GetUserById(userID);
+        Szemely szemely = dao.GetUserById(77);
         nevLabel.setText(szemely.getNev());
         nemLabel.setText(szemely.getNem().toString());
         SzuletesiDatumLabel.setText(szemely.getSzuletesiDatum().toString());

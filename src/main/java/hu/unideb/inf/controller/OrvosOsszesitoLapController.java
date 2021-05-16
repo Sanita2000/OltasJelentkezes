@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.controlsfx.control.Rating;
 
 
 public class OrvosOsszesitoLapController implements Initializable {
@@ -63,7 +65,6 @@ public class OrvosOsszesitoLapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        System.out.println("\n\ninit scece");
         List<Orvos> dokik =dao.getAllOrvos(); 
         System.out.println(dokik);
        
@@ -75,5 +76,15 @@ public class OrvosOsszesitoLapController implements Initializable {
         ObservableList<Orvos> orvosok = FXCollections.observableArrayList(dokik);
         orvosTable.setItems(orvosok);
     }
+    
+    private Rating makeRating(double rate) {
+        Rating rating = new Rating();
+        rating.setOrientation(Orientation.HORIZONTAL);
+        rating.setPartialRating(true);                
+        rating.setRating(rate);
+        rating.setMouseTransparent(true);
+        return rating;
+    }
 
 }
+

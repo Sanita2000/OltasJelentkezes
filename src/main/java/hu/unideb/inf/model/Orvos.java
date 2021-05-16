@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,6 +27,15 @@ public class Orvos {
     private int ID;
     private String nev;
     private float ertekeles;
+    private int ertekeles_dbszam;
+
+    public int getErtekeles_dbszam() {
+        return ertekeles_dbszam;
+    }
+
+    public void setErtekeles_dbszam(int ertekeles_dbszam) {
+        this.ertekeles_dbszam = ertekeles_dbszam;
+    }
 
     public int getID() {
         return ID;
