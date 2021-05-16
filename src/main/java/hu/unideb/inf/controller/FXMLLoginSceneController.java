@@ -34,7 +34,7 @@ public class FXMLLoginSceneController implements Initializable{
     private PasswordField textjelszo;
 
     @FXML
-    void handleBelepesButtonPressed(ActionEvent event) {
+    void handleBelepesButtonPressed(ActionEvent event) throws IOException {
         String email = textemail.getText();
         String jelszo = textjelszo.getText();
         
@@ -49,8 +49,8 @@ public class FXMLLoginSceneController implements Initializable{
                 "Sikeres bejelentkezés!. Az átirányítás folyamatban",
                 "Üzenet",
             JOptionPane.PLAIN_MESSAGE);
-            //SceneExtentions sc = new SceneExtentions();
-            //sc.ChangeScene(event, "FXMLindexScene");
+            SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "FXMLindexScene");
             counter = 1;
             break;
             }
