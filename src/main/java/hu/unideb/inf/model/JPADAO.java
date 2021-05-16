@@ -30,7 +30,7 @@ public class JPADAO implements DAO{
         }
         catch(Exception ex)
         {
-            System.err.println("Hiba mentés közben!");
+            System.err.println("Hiba mentés közben!" + ex.getMessage());
         }
     }
 

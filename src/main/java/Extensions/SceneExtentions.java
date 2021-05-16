@@ -6,6 +6,7 @@ import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
+import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -29,6 +30,9 @@ import javafx.stage.Stage;
 public class SceneExtentions {    
     
     static DAO dao = new JPADAO();
+    
+    public static Szemely user;
+    public static OltasEsemeny aktualis_oltasesemeny;
     
     public static DateTimeFormatter getFormatter()
     {
@@ -104,11 +108,11 @@ public class SceneExtentions {
             {                
                 for (int i = 0; i < 10 - tmp.size(); i++) {                    
                     OrvosBeosztas beo;
-                    do
-                    {
+                    //do
+                    //{
                         beo = SceneExtentions.GenerateRandomDateTime();
-                    }
-                    while(IdopontUtkozes(beo, tmp));
+                    /*}
+                    while(IdopontUtkozes(beo, tmp));*/
                     //item.beosztas.add(beo);                       
                     System.out.println(tmp.size() + "  " + item.getNev());
                     beo.orvos = item;
@@ -124,9 +128,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(9);
+        oltas.vakcina = dao.GetVakcinaById(188);
         oltas.orvos = (Orvos) dao.GetOrvosById(2);
-        oltas.user = dao.GetUserById(1);
+        oltas.user = dao.GetUserById(77);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
@@ -135,7 +139,7 @@ public class SceneExtentions {
     
     public static List<OltasEsemeny> CheckPastOltasEsemenyek()
     {
-        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(7);
+        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(77);
         esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) || e.isVizsgalva());
         System.out.println("vizsg");
         return esemenyek;        

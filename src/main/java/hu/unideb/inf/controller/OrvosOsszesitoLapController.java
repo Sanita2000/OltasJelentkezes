@@ -108,7 +108,6 @@ public class OrvosOsszesitoLapController implements Initializable {
         rating.setRating(rate);
         rating.setMouseTransparent(true);
         return rating;
-
     }
 
 }

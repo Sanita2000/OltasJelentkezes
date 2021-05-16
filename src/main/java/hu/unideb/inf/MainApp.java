@@ -39,7 +39,7 @@ public class MainApp extends Application {
         //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLOltasok.fxml"));
         //FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLVakcinak.fxml"));
                           
-        JPADAO dao = new JPADAO();
+        /*JPADAO dao = new JPADAO();
         Orvos o1 = new Orvos();
         o1.setNev("Dr. Kis István");
         
@@ -62,10 +62,10 @@ public class MainApp extends Application {
         
         Szemely f1 = new Szemely();
         f1.setNev("Anitaa");
-        dao.save(f1);
+        dao.save(f1);*/
         
         SceneExtentions.GenerateTestOltasEsemeny();
-        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLindexScene.fxml"));
+        FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/BeoltottsagParbeszedAblak.fxml"));
 
         Scene scene = new Scene(loader.load());
         stage.setTitle("olTáska");

@@ -232,7 +232,7 @@ public class indexController implements Initializable {
         dao.save(sz);
         */
         DAO dao = new JPADAO();
-        Szemely szemely = dao.GetUserById(userID);
+        Szemely szemely = dao.GetUserById(77);
         nevLabel.setText(szemely.getNev());
         nemLabel.setText(szemely.getNem().toString());
         SzuletesiDatumLabel.setText(format(szemely.getSzuletesiDatum()));
