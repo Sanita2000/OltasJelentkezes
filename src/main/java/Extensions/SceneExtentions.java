@@ -128,8 +128,9 @@ public class SceneExtentions {
         OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.orvos = (Orvos) dao.GetOrvosById(34);
         oltas.vakcina = dao.GetVakcinaById(54);
+        oltas.orvos = (Orvos) dao.GetOrvosById(34);
+        oltas.user = dao.GetUserById(33);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
