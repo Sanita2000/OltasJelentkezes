@@ -7,6 +7,7 @@ package hu.unideb.inf.model;
 
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -190,4 +191,22 @@ public class JPADAO implements DAO{
         }
     }
    
+    
+    @Override
+    public List<OrvosBeosztas> GetOrvosIdopontok(int id) {
+    try{        
+        TypedQuery<OrvosBeosztas> query = entityManager.createQuery("SELECT b FROM OrvosBeosztas b WHERE ID = " + id, OrvosBeosztas.class);
+        //query.setParameter("id", o.getID());
+
+
+        List<OrvosBeosztas> idopont = query.getResultList();
+        return idopont;
+    }
+    
+    catch(Exception e)
+    {
+        System.err.println("Hiba orvosbeosztál lekérdezése közben! Excetion: " + e.getMessage());
+        return null;
+    }
+    }
 }

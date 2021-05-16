@@ -39,6 +39,10 @@ import java.util.List;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Tooltip;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  * FXML Controller class
@@ -64,7 +68,9 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
     public static int index;
     public static int kiegeszit; // adatok2-ben hogy melyik foglalt-ba töltse az indexet
     
-
+    List<Orvos> orvosok = dao.getAllOrvos();
+    int fontos;
+    static DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
     
     @FXML
     private Button nextbtn;
@@ -106,14 +112,42 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
     @FXML
     void nextPage(ActionEvent event) throws IOException {
         valasztottIdopont = idopontValaszto.getValue();
-        
+
         System.out.println("Datum " + valasztottIdopont);
+        
+        List<OrvosBeosztas> beosztasok = dao.GetOrvosBeosztas(orvosok.get(fontos));
+        List<Integer> ids = new ArrayList<>();
+        for(int j = 0; j < beosztasok.size(); j++)
+        {
+            ids.add(beosztasok.get(j).getID());
+        }
+        
+        
+        for(int i = 0; i < beosztasok.size(); i++)
+        {
+            String formattedDateTime = beosztasok.get(i).getKezdesIdo().format(formatter).replace("T", " ");
+ 
+            if(formattedDateTime.equals(valasztottIdopont))
+            {
+                int id = ids.get(i);
+                System.out.println("VALASZTOTT");
+                System.out.println(formattedDateTime);
+                List<OrvosBeosztas> ido = dao.GetOrvosIdopontok(id);
+                OrvosBeosztas azonosito = ido.get(0);
+                dao.delete(azonosito);
+            }
+            //System.out.println(formattedDateTime);
+            //System.out.println(valasztottIdopont);
+
+        }
+        
         //System.out.println("index " + index);
         ChangeScene(event, "FXMLAdatok2");
     }
     
     void idopontListazasKiegeszito(int elem)
     {
+
         if (elem == 0)
         {
             for(int j = 0; j < idopontok.size(); j++)
@@ -121,6 +155,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT1.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }
         }
@@ -131,6 +166,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT2.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }
         }
@@ -141,6 +177,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT3.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }            
         }
@@ -151,6 +188,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT4.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }            
         }
@@ -161,6 +199,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT5.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }            
         }
@@ -171,6 +210,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
                 if (FOGLALT6.indexOf(j) != -1 )
                 {
                     idopontok.remove(j);
+
                 }
             }            
         }
@@ -181,13 +221,19 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
     {
 
             idopontok.clear();
-            List<Orvos> orvosok = dao.getAllOrvos();
+
             List<OrvosBeosztas> beosztasok = dao.GetOrvosBeosztas(orvosok.get(elem));
 
             LocalDateTime kezdes = beosztasok.get(0).getKezdesIdo();
             LocalDateTime vegzes = beosztasok.get(0).getVegzesIdo();
             
-            idopontok.add(kezdes);
+            
+            for(int i = 0; i < beosztasok.size(); i++)
+            {
+                idopontok.add(beosztasok.get(i).getKezdesIdo());
+            }
+
+            /*
             int i = 30;
             int ora = kezdes.getHour();
             while(ora != vegzes.getHour())//kezdes.plusMinutes(i).getMinute() != vegzes.getMinute())
@@ -202,6 +248,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             }
 
             idopontok.add(vegzes);
+*/
            // System.out.println("kezdes: " + kezdes);
 
             //System.out.println("vegzes: " + vegzes);
@@ -241,8 +288,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
     @FXML
     void idopontok(ActionEvent event) {
         
-        List<Orvos> orvosok = dao.getAllOrvos();
-        
+      
         idopontValaszto.setVisible(true);
         tst2.setVisible(true);
         nextbtn.setDisable(false);
@@ -253,6 +299,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(0).getID();
             kiegeszit = 1;
             idopontListazas(0);
+            fontos = 0;
             //List<LocalDateTime> eredmeny = lista;
             //System.out.println(eredmeny.get(index));
             
@@ -265,6 +312,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(1).getID();
             kiegeszit = 2;
             idopontListazas(1);
+            fontos = 1;
         }
         else if (dr3.isSelected())
         {
@@ -273,6 +321,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(2).getID();
             kiegeszit = 3;
             idopontListazas(2);
+            fontos = 2;
         }
         else if (dr4.isSelected())
         {
@@ -281,6 +330,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(3).getID();
             kiegeszit = 4;
             idopontListazas(3);
+            fontos = 3;
         }
         else if (dr5.isSelected())
         {
@@ -289,6 +339,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(4).getID();
             kiegeszit = 5;
             idopontListazas(4);
+            fontos = 4;
         }
         else if (dr6.isSelected())
         {
@@ -297,6 +348,7 @@ public class FXMLAdatokController extends SceneExtentions implements Initializab
             valasztottOrvosID = orvosok.get(5).getID();
             kiegeszit = 6;
             idopontListazas(5);
+            fontos = 5;
         }
 
     }
