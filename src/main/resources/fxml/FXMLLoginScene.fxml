@@ -35,7 +35,7 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <Label id="notlabel" layoutX="548.0" layoutY="175.0" prefHeight="31.0" prefWidth="212.0" text="Még nincs fiókja?">
+      <Label id="notlabel" layoutX="529.0" layoutY="175.0" prefHeight="31.0" prefWidth="257.0" text="Még nincs fiókja?">
          <font>
             <Font size="24.0" />
          </font>
