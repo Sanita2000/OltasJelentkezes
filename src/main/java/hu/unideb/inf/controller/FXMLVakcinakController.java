@@ -26,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -60,6 +61,9 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
     
     @FXML
     private Text szoveg;
+    
+    @FXML
+    private Label label_szovvisszajelzes;
     
     @FXML
     private ListView<String> szoveges_ertekelesek;
@@ -155,7 +159,7 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
                 {
                     
                     ertek = v.getErtekeles();
-                    ertekelesek = dao.GetVakcinaErtekelesekByVakcinaID(188);
+                    ertekelesek = dao.GetVakcinaErtekelesekByVakcinaID(v.getID());
                     for (int i = 0; i < ertekelesek.size(); i++) {
                         System.out.println(ertekelesek.get(i).getErtekeles());
                     }
@@ -174,13 +178,21 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
                 ertekeles.ratingProperty().set(floatKerekit(ertek));
             }
             
-            if (ertekelesek != null)
+            szoveges_ertekelesek.getItems().clear();
+            if (ertekelesek != null || ertekelesek.size() == 0)
             {
                 for (int j = 0; j < ertekelesek.size(); j++) {
+                    
                     System.out.println(ertekelesek.get(j).getErtekeles());
                     szoveges_ertekelesek.getItems().add(ertekelesek.get(j).getErtekeles());
                 }
+                szoveges_ertekelesek.setVisible(true);
+                label_szovvisszajelzes.setText("Szöveges visszajelzések:");
                 
+            }
+            else{
+                szoveges_ertekelesek.setVisible(false);
+                label_szovvisszajelzes.setText("Szöveges visszajelzések: még nem érkeztek szöveges visszajelzések");
             }
             
             }

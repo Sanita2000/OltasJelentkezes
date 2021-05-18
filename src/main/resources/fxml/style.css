@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2021. máj. 17., 20:00:53
+    Author     : karal
+*/
+
+.pane {
+    -fx-background-image: url("dokis.png");
+    
+    -fx-background-size:cover;
+    -fx-background-position: 200px, 0px, 0px, 0px;
+    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+    /*-fx-background-color: red;*/
+}
+
+.menubutton {
+    -fx-background-color: rgba(14, 114, 140, 0.8);
+    -fx-border-radius: 0;
+    -fx-border-style: solid none none none;
+    -fx-border-color: white;
+    -fx-border-width:1px;    
+}
+
+    .menubutton:hover {
+        -fx-background-color: rgba(14, 114, 140, 0.6);
+    }
+
+    .menubutton:pressed {
+        -fx-background-color: rgba(14, 114, 140, 1);
+        
+    }
+
+.menuhatter {
+    -fx-background-color: rgba(14, 114, 140);
+}
+
+.logo {
+    -fx-background-image: url("szuri.png");
+    -fx-background-size: cover;
+    -fx-background-color: rgba(19, 111, 134);
+}
+
+.table {
+    -fx-background-color: rgba(235, 245, 251, .9);
+    -fx-border-radius: 5px;
+    -fx-border-style: solid;
+    -fx-border-color: rgba(235, 245, 251, .9);
+    -fx-border-width: 5px;
+    -fx-grid-lines-visible: true;
+    -fx-vgap: 0.5;
+    -fx-hgap: 0.5;
+}
+
+.label{
+    -fx-padding: 0 15px;
+}

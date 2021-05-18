@@ -87,47 +87,62 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox prefHeight="600.0" prefWidth="122.0">
+      <VBox id="menuhatter" prefHeight="600.0" prefWidth="151.0" styleClass="menuhatter">
          <children>
-            <Button id="menu" fx:id="indexmenu" mnemonicParsing="false" onAction="#indexmenuClicked" prefHeight="47.0" prefWidth="126.0" style="-fx-border-width: 1;" text="Főoldal">
+            <Button id="menu" fx:id="indexmenu" mnemonicParsing="false" onAction="#indexmenuClicked" prefHeight="47.0" prefWidth="157.0" styleClass="menubutton" text="Főoldal" textFill="WHITE" textOverrun="CLIP" wrapText="true">
                <VBox.margin>
                   <Insets top="60.0" />
                </VBox.margin>
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Button>
-            <Button fx:id="jelentkezesmenu" mnemonicParsing="false" onAction="#jelentkezesmenuclicked" prefHeight="53.0" prefWidth="125.0" text="Jelentkezés oltásra">
+            <Button fx:id="jelentkezesmenu" mnemonicParsing="false" onAction="#jelentkezesmenuclicked" prefHeight="53.0" prefWidth="152.0" styleClass="menubutton" text="Jelentkezés oltásra" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" top="30.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Button>
-            <Button fx:id="orvosokmenu" mnemonicParsing="false" onAction="#orvosokmenuclicked" prefHeight="52.0" prefWidth="145.0" text="Orvosaink">
+            <Button fx:id="orvosokmenu" mnemonicParsing="false" onAction="#orvosokmenuclicked" prefHeight="52.0" prefWidth="155.0" styleClass="menubutton" text="Orvosaink" textFill="WHITE" wrapText="true">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" top="30.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Button>
-            <Button fx:id="vakcinainfomenu" mnemonicParsing="false" onAction="#vakcinainfomenuclicked" prefHeight="52.0" prefWidth="145.0" text="Vakcina Info">
+            <Button fx:id="vakcinainfomenu" mnemonicParsing="false" onAction="#vakcinainfomenuclicked" prefHeight="52.0" prefWidth="154.0" styleClass="menubutton" text="Vakcina Info" textFill="WHITE" wrapText="true">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" top="30.0" />
+                  <Insets />
                </VBox.margin>
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Button>
-            <Button fx:id="kilelpesmenu" mnemonicParsing="false" onAction="#kilelpesmenuclicked" prefHeight="52.0" prefWidth="145.0" text="Kilépés">
+            <Button fx:id="kilelpesmenu" mnemonicParsing="false" onAction="#kilelpesmenuclicked" prefHeight="52.0" prefWidth="169.0" styleClass="menubutton" text="Kilépés" textFill="WHITE" wrapText="true">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" top="150.0" />
+                  <Insets left="5.0" right="5.0" top="200.0" />
                </VBox.margin>
                <padding>
                   <Insets left="5.0" right="5.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Button>
          </children>
       </VBox>
