@@ -6,13 +6,10 @@
 package hu.unideb.inf.controller;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.KorTortenet;
 import hu.unideb.inf.model.OltasEsemeny;
-import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.Szemely;
-import hu.unideb.inf.model.Szemely.NemTipus;
-import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -28,6 +25,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,8 +34,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
 
 public class indexController implements Initializable {
+     @FXML
+    private Button indexmenu;
 
-    public static int userID = 1;
+    @FXML
+    private Button jelentkezesmenu;
+
+    @FXML
+    private Button orvosokmenu;
+
+    @FXML
+    private Button vakcinainfomenu;
+
+    @FXML
+    private Button kilelpesmenu;
+
+
+    public static FelhasznaloSzemely belepett = FXMLLoginSceneController.belepett;
 
     public static int ev = 0;
     public static int honap = 0;
@@ -64,7 +78,7 @@ public class indexController implements Initializable {
     private DatePicker BDPicker;
 
     @FXML
-    private ChoiceBox<NemTipus> nemChoiceBox;
+    private ChoiceBox<FelhasznaloSzemely.NemTipus> nemChoiceBox;
 
     @FXML
     private Button Change;
@@ -113,23 +127,23 @@ public class indexController implements Initializable {
     void OKButtonPushed(ActionEvent event) {
         String nev = nevTextField.getText();
         String TAJ=TAJTextField.getText();
-        //LocalDate BirthDay=BDPicker.getValue();
+        LocalDate BirthDay=BDPicker.getValue();
         if(!isNumeric(TAJ) || TAJ.length()!=9 || TAJ.charAt(0)=='0')
         {
-            JOptionPane.showMessageDialog(null,"Hibás adatot adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"HibĂˇs adatot adtĂˇl meg.","Hiba",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
 
         if (!ErvenyesNev(nev)) 
         {
-            JOptionPane.showMessageDialog(null,"Hibás nevet adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"HibĂˇs nevet adtĂˇl meg.","Hiba",JOptionPane.ERROR_MESSAGE);
             return;
         } 
         else {
         JOptionPane.showMessageDialog(null,
-                    "Az adatok sikeresen módosítva.",
-                    "Üzenet",
+                    "Az adatok sikeresen mĂłdosĂ­tva.",
+                    "Ăśzenet",
                     JOptionPane.PLAIN_MESSAGE);
 
             Change.setVisible(true);
@@ -149,14 +163,14 @@ public class indexController implements Initializable {
             nemLabel.setText(nemChoiceBox.getValue().toString());
 
             DAO dao = new JPADAO();
-            Szemely szemely = dao.GetUserById(userID);
-            szemely.setNem(nemChoiceBox.getValue());
-            szemely.setNev(nevTextField.getText());
-            szemely.setSzuletesiDatum(BDPicker.getValue()); //innen kiszedtem a --honap, mert ha tovabbmegy az oltasra, és vissza
-                                                                                //akkor a beallitott honapot 1-el csökkenti, így viszont rendben lesz databaseben is jo
-            szemely.setTAJ(Integer.parseInt(TAJTextField.getText()));
-            dao.update(szemely);
-            dao.save(szemely);
+
+            belepett.setNem(nemChoiceBox.getValue());
+            belepett.setNev(nevTextField.getText());
+            belepett.setSzuletesiDatum(BDPicker.getValue()); //innen kiszedtem a --honap, mert ha tovabbmegy az oltasra, Ă©s vissza
+                                                                                //akkor a beallitott honapot 1-el csĂ¶kkenti, Ă­gy viszont rendben lesz databaseben is jo
+            belepett.setTAJ(Integer.parseInt(TAJTextField.getText()));
+            dao.update(belepett);
+            dao.save(belepett);
         }
     }
 
@@ -176,9 +190,9 @@ public class indexController implements Initializable {
         TAJTextField.setText(TAJLabel.getText());
         String nemRaw=nevLabel.getText();
         if(nemRaw=="FERFI"){
-        nemChoiceBox.setValue(Szemely.NemTipus.FERFI);}
+        nemChoiceBox.setValue(FelhasznaloSzemely.NemTipus.FERFI);}
         else {
-        nemChoiceBox.setValue(Szemely.NemTipus.NO);}
+        nemChoiceBox.setValue(FelhasznaloSzemely.NemTipus.NO);}
 
     }
 
@@ -207,15 +221,14 @@ public class indexController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       
         DAO dao = new JPADAO();
-        Szemely szemely = dao.GetUserById(userID);
-        nevLabel.setText(szemely.getNev());
-        nemLabel.setText(szemely.getNem().toString());
-        SzuletesiDatumLabel.setText(szemely.getSzuletesiDatum().toString());
-        TAJLabel.setText("" + szemely.getTAJ());
+        nevLabel.setText(belepett.getNev());
+        nemLabel.setText(belepett.getNem().toString());
+        SzuletesiDatumLabel.setText(belepett.getSzuletesiDatum().toString());
+        TAJLabel.setText("" + belepett.getTAJ());
 
         ObservableList nemek = FXCollections.observableArrayList();
-        nemek.add(Szemely.NemTipus.FERFI);
-        nemek.add(Szemely.NemTipus.NO);
+        nemek.add(FelhasznaloSzemely.NemTipus.FERFI);
+        nemek.add(FelhasznaloSzemely.NemTipus.NO);
         nemChoiceBox.setItems(nemek);
         nemChoiceBox.getSelectionModel().selectFirst();
         
@@ -229,12 +242,12 @@ public class indexController implements Initializable {
         */
         
         
-        List<OltasEsemeny> osszes=dao.GetUserOltasEsemenyei(userID);
+        List<OltasEsemeny> osszes=dao.GetUserOltasEsemenyei(belepett.getID());
         
         idopontOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, LocalDateTime>("idopont"));
         vakcinaOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("vakcina"));
         orvosOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("orvos"));
-        megkaptaOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("megkapta"));
+        //megkaptaOszlop.setCellValueFactory(new PropertyValueFactory<KorTortenet, String>("megkapta"));
         
         
         ObservableList<KorTortenet> adatok= FXCollections.observableArrayList();
@@ -250,5 +263,34 @@ public class indexController implements Initializable {
         }
         korTortenetTabla.setItems(adatok);
     }
+    
+    SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {
+        System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
+        sc.ChangeScene(event, "FMXMLindexScene");
+    }
+
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
+
 
 }

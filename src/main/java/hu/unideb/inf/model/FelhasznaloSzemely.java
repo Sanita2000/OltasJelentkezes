@@ -16,26 +16,58 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 /**
  *
- * @author admin
+ * @author andra
  */
+        
 @Entity
-@Table(name="Szemelyek")
-public class Szemely {
+@Table(name="FelhasznaloSzemely")
+public class FelhasznaloSzemely {
+    
     @Id
     @GeneratedValue
     private int ID;
+    private String felhasznalonev;
+    private String jelszo;
     private String nev;
     private int TAJ;
     private LocalDate SzuletesiDatum;
     @Enumerated(EnumType.STRING)
     NemTipus nem;
 
-    @OneToMany(mappedBy = "user")    
-    public Set<OltasEsemeny> oltasEsemeny = new HashSet<>();
-    
+    public LocalDate getSzuletesiDatum() {
+        return SzuletesiDatum;
+    }
+
+    public void setSzuletesiDatum(LocalDate SzuletesiDatum) {
+        this.SzuletesiDatum = SzuletesiDatum;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getEmail() {
+        return felhasznalonev;
+    }
+
+    public void setEmail(String felhasznalonev) {
+        this.felhasznalonev = felhasznalonev;
+    }
+
+    public String getJelszo() {
+        return jelszo;
+    }
+
+    public void setJelszo(String jelszo) {
+        this.jelszo = jelszo;
+    }
+
     public String getNev() {
         return nev;
     }
@@ -50,14 +82,6 @@ public class Szemely {
 
     public void setTAJ(int TAJ) {
         this.TAJ = TAJ;
-    }
-
-    public LocalDate getSzuletesiDatum() {
-        return SzuletesiDatum;
-    }
-
-    public void setSzuletesiDatum(LocalDate SzuletesiDatum) {
-        this.SzuletesiDatum = SzuletesiDatum;
     }
     
     public NemTipus getNem() {
@@ -79,4 +103,6 @@ public class Szemely {
     @OneToMany
     @JoinColumn(name = "user_id")
     Set<VakcinaErtekeles> vakcina_ertekeles = new HashSet<>();
+    
+    
 }

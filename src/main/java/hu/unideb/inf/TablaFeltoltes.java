@@ -5,26 +5,15 @@
  */
 package hu.unideb.inf;
 
-import hu.unideb.inf.model.DAO;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
-import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.OrvosBeosztas;
-import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.GregorianCalendar;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
-
 
 /**
  *
- * @author Tamás Ádám
+ * @author Tamás �?dám
  */
 public class TablaFeltoltes extends JPADAO{
     public static void feltolt()
@@ -33,9 +22,11 @@ public class TablaFeltoltes extends JPADAO{
         
         if (dao.getAllOrvos().size() == 0)
         {
-            Szemely bacsi=new Szemely();
-            bacsi.setNev("Bacsikateszt");
-            bacsi.setNem(Szemely.NemTipus.FERFI);
+            FelhasznaloSzemely bacsi = new FelhasznaloSzemely();
+            bacsi.setNev("Bacsika teszt");
+            bacsi.setEmail("bacsika@bacsikamail.hu");
+            bacsi.setJelszo("dsaDSA321");
+            bacsi.setNem(FelhasznaloSzemely.NemTipus.FERFI);
             bacsi.setTAJ(772722010);
             bacsi.setSzuletesiDatum(LocalDate.of(1999,02,02));
 
@@ -177,10 +168,6 @@ public class TablaFeltoltes extends JPADAO{
             vakcina16.setNev("Oltas16");
             vakcina16.setLeiras("Oltas16 leiras");
             dao.save(vakcina16);
-
-        }
-        
-     
-        
+        }      
     }
 }

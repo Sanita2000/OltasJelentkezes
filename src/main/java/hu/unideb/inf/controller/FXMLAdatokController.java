@@ -47,7 +47,7 @@ import javax.persistence.TypedQuery;
 /**
  * FXML Controller class
  *
- * @author Tamás Ádám
+ * @author 
  */
 public class FXMLAdatokController extends SceneExtentions implements Initializable {
 

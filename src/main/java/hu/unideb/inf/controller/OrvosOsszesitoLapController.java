@@ -7,7 +7,6 @@ package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
-import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;

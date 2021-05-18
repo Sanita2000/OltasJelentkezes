@@ -1,19 +1,18 @@
 package Extensions;
 
-import Extensions.Nevesitett_konst;
 import hu.unideb.inf.model.DAO;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
-import hu.unideb.inf.model.Szemely;
-import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import javafx.event.ActionEvent;
@@ -31,7 +30,7 @@ public class SceneExtentions {
     
     static DAO dao = new JPADAO();
     
-    public static Szemely user;
+    public static FelhasznaloSzemely user;
     public static OltasEsemeny aktualis_oltasesemeny;
     
     public static DateTimeFormatter getFormatter()
@@ -48,19 +47,20 @@ public class SceneExtentions {
         Parent par_scene = FXMLLoader.load(getClass().getResource(file));
         
         Scene scene = new Scene(par_scene);
+        
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow(); 
         window.setScene(scene);
         window.show();
     }
     
     
-    public static OrvosBeosztas GenerateRandomDateTime()
+       public static OrvosBeosztas GenerateRandomDateTime()
     {
         Random rand = new Random();   
         LocalDateTime idopont = LocalDateTime.now();
         LocalDate nap;
         
-        //random hétköznap generálása
+        //random hĂ©tkĂ¶znap generĂˇlĂˇsa
                  
         do
         {
@@ -71,10 +71,10 @@ public class SceneExtentions {
         while(nap.getDayOfWeek() == DayOfWeek.SUNDAY || nap.getDayOfWeek() == DayOfWeek.SATURDAY);
                 
             
-        //System.out.println("generált: " + nap);
+        //System.out.println("generĂˇlt: " + nap);
         
-        //random kezdő- és végidőpont generálása
-        int randKezdo = rand.nextInt(9) + 7;       //8 és 17 közötti random szám
+        //random kezdĹ‘- Ă©s vĂ©gidĹ‘pont generĂˇlĂˇsa
+        int randKezdo = rand.nextInt(9) + 7;       //8 Ă©s 17 kĂ¶zĂ¶tti random szĂˇm
         int init = rand.nextInt() % 3;
         int randintervall = rand.nextInt(18 - randKezdo + 1) + 1;
         OrvosBeosztas _orvosbeosztas = new OrvosBeosztas();
@@ -134,24 +134,25 @@ public class SceneExtentions {
     
     public static void GenerateTestOltasEsemeny()
     {
-        OltasEsemeny oltas = new OltasEsemeny();
+        /*OltasEsemeny oltas = new OltasEsemeny();
         oltas.setIdopont(LocalDateTime.now().minusHours(1));
         oltas.setMegkapta(false);
-        oltas.vakcina = dao.GetVakcinaById(10);
-        oltas.orvos = (Orvos) dao.GetOrvosById(2);
-        oltas.user = dao.GetUserById(1);
+        oltas.vakcina = dao.GetVakcinaById(54);
+        oltas.orvos = (Orvos) dao.GetOrvosById(34);
+        oltas.user = dao.GetUserById(33);
         oltas.setVizsgalva(false);
         dao.save(oltas);        
         
-        System.out.println("Generált esemény: " + oltas.vakcina.getNev() + "  " + oltas.orvos.getNev());
+        System.out.println("GenerĂˇlt esemĂ©ny: " + oltas.vakcina.getNev() + "  " + oltas.orvos.getNev());*/
     }
     
     public static List<OltasEsemeny> CheckPastOltasEsemenyek()
     {
-        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(1);
+        /*List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(77);
         esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) || e.isVizsgalva());
         System.out.println("vizsg");
-        return esemenyek;        
+        return esemenyek;        */
+        return new ArrayList<OltasEsemeny>();
     }
     
     

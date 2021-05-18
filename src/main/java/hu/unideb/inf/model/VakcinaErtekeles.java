@@ -32,7 +32,6 @@ public class VakcinaErtekeles {
         return ID;
     }
     
-
     public void setID(int ID) {
         this.ID = ID;
     }

@@ -14,11 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.TablaFeltoltes;
-import static hu.unideb.inf.controller.indexController.userID;
-import hu.unideb.inf.model.Felhasznalo;
+//import static hu.unideb.inf.controller.indexController.userID;
+import static hu.unideb.inf.controller.indexController.belepett;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -43,7 +43,7 @@ import javax.persistence.Persistence;
 /**
  * FXML Controller class
  *
- * @author Tamás Ádám
+ * @author Tamás m
  */
 public class FXMLOltasokController extends SceneExtentions implements Initializable {
 
@@ -127,7 +127,7 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
         //System.out.println("eventString ===>>>" + eventString + "<<<<====");
         //System.out.println(oltasID);
         JPADAO dao = new JPADAO();
-        LocalDate gc = dao.GetUserById(userID).getSzuletesiDatum();
+        LocalDate gc = dao.GetUserById(belepett.getID()).getSzuletesiDatum();
         LocalDate start = gc;
         LocalDate end = LocalDate.now();
         eletkor = ChronoUnit.YEARS.between(start, end);

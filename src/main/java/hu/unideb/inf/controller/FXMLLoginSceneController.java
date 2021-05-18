@@ -6,14 +6,18 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
+import hu.unideb.inf.model.FelhasznaloSzemely;
+import hu.unideb.inf.model.JPADAO;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 /**
  * FXML Controller class
  *
@@ -22,16 +26,51 @@ import javafx.scene.control.TextField;
 
 public class FXMLLoginSceneController implements Initializable{
 
+public FXMLLoginSceneController(){
+    
+}
+    
+    
+
+    public static FelhasznaloSzemely belepett = new FelhasznaloSzemely();
+    
     @FXML
     private TextField textemail;
 
     @FXML
     private PasswordField textjelszo;
-
+     
     @FXML
-    void handleBelepesButtonPressed(ActionEvent event) throws IOException {
-        SceneExtentions sc = new SceneExtentions();
-        sc.ChangeScene(event, "FXMLindexScene");
+    public void handleBelepesButtonPressed(ActionEvent event) throws IOException {
+        String email = textemail.getText();
+        String jelszo = textjelszo.getText();
+        
+        int counter = 0;
+        JPADAO jpadao = new JPADAO();
+        List<FelhasznaloSzemely> felhasznalo = jpadao.GetFelhasznaloSzemelyek();
+        for(int i = 0; i < felhasznalo.size(); i++) {
+            System.out.println("Email: " + felhasznalo.get(i).getEmail());
+            System.out.println("Jelszo: " + felhasznalo.get(i).getJelszo());
+            if(felhasznalo.get(i).getEmail().equals(email) && felhasznalo.get(i).getJelszo().equals(jelszo)) {
+                
+                belepett = felhasznalo.get(i);
+                
+                JOptionPane.showMessageDialog(null,
+                "Sikeres bejelentkezés!. Az átirányítás folyamatban",
+                "Üzenet",
+            JOptionPane.PLAIN_MESSAGE);
+            SceneExtentions sc = new SceneExtentions();
+            sc.ChangeScene(event, "FXMLindexScene");
+            counter = 1;
+            break;
+            }
+        }
+        if(counter != 1) {
+            JOptionPane.showMessageDialog(null,
+            "Hibás E-mail cím / Jelszó. Ha nem rendelkezik fiókkal, a regisztrációhoz kattintson a Regisztráció gombra",
+            "Hiba",
+            JOptionPane.ERROR_MESSAGE);
+        }      
     }
 
     @FXML
@@ -42,7 +81,7 @@ public class FXMLLoginSceneController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        textemail.setStyle("-fx-background-color: BEIGE;");
     }
 
 }

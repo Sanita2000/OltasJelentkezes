@@ -29,12 +29,12 @@ import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvos;
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasNev;
-import static hu.unideb.inf.controller.indexController.userID;
+import static hu.unideb.inf.controller.indexController.belepett;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
-import hu.unideb.inf.model.Szemely;
 
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
@@ -182,7 +182,7 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
-            oltas.user = dao.GetUserById(userID);
+            oltas.user = dao.GetUserById(belepett.getID());
             //System.out.println(vakcina.beoltas);
 
             dao.save(oltas);
@@ -214,7 +214,7 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
         valasztOrvos.setText(valasztottOrvos);
         idopontText.setText(valasztottIdopont);
         JPADAO dao = new JPADAO();
-        Szemely aktualisUser = dao.GetUserById(userID);
+        FelhasznaloSzemely aktualisUser = dao.GetUserById(belepett.getID());
         nevMezo.setText(aktualisUser.getNev());
         tajMezo.setText("" + aktualisUser.getTAJ());
         szulinapMezo.setText(aktualisUser.getSzuletesiDatum().toString());

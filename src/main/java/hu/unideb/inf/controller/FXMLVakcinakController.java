@@ -11,6 +11,7 @@ import Extensions.SceneExtentions;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Vakcina;
+import hu.unideb.inf.model.VakcinaErtekeles;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +26,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -58,6 +60,9 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
     
     @FXML
     private Text szoveg;
+    
+    @FXML
+    private ListView<String> szoveges_ertekelesek;
 
     
     @FXML
@@ -83,6 +88,31 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        szoveges_ertekelesek.setCellFactory(param -> new ListCell<String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item==null) {
+                    setGraphic(null);
+                    setText(null); 
+                    // other stuff to do...
+
+                }else{
+
+                    // set the width's
+                    setMinWidth(param.getWidth());
+                    setMaxWidth(param.getWidth());
+                    setPrefWidth(param.getWidth());
+
+                    // allow wrapping
+                    setWrapText(true);
+
+                    setText(item.toString());
+
+
+                }
+            }
+        });
 
         List<Vakcina> vakcinak = dao.getAllVakcina();
         int i = 0;
@@ -118,12 +148,17 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
             @Override
             public void changed(ObservableValue<? extends String> ov, String oldValue, String newValue) {
                 //System.out.println(newValue);
+                List<VakcinaErtekeles> ertekelesek = null;
             for (Vakcina v: vakcinak)
             {
                 if(v.getNev() == newValue)
                 {
                     
                     ertek = v.getErtekeles();
+                    ertekelesek = dao.GetVakcinaErtekelesekByVakcinaID(188);
+                    for (int i = 0; i < ertekelesek.size(); i++) {
+                        System.out.println(ertekelesek.get(i).getErtekeles());
+                    }
                     break;
                 }
             }
@@ -135,9 +170,19 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
             }
             else
             {
-            szoveg.setVisible(false);
-            ertekeles.ratingProperty().set(floatKerekit(ertek));
+                szoveg.setVisible(false);
+                ertekeles.ratingProperty().set(floatKerekit(ertek));
             }
+            
+            if (ertekelesek != null)
+            {
+                for (int j = 0; j < ertekelesek.size(); j++) {
+                    System.out.println(ertekelesek.get(j).getErtekeles());
+                    szoveges_ertekelesek.getItems().add(ertekelesek.get(j).getErtekeles());
+                }
+                
+            }
+            
             }
         });
 
