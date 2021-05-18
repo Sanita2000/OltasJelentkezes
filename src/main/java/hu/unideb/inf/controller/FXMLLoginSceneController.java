@@ -81,6 +81,8 @@ public FXMLLoginSceneController(){
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        textemail.setText("anita@oltsatokbe.com");
+        textjelszo.setText("P@ssw0rd__");
         textemail.setStyle("-fx-background-color: BEIGE;");
     }
 

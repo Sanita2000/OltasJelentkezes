@@ -279,7 +279,8 @@ public class indexController implements Initializable {
 
     @FXML
     void kilelpesmenuclicked(ActionEvent event) throws IOException {
-        sc.ChangeScene(event, "FXMLOltasok");
+        sc.ChangeScene(event, "FXMLLoginScene");
+        belepett = null;
     }
 
     @FXML
