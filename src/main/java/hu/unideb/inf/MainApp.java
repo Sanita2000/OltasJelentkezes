@@ -26,8 +26,6 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.setHeight(600);
-        stage.setWidth(800);
         
         TablaFeltoltes.feltolt(); //betolti az orvosokat és a vakcinákat 
 
@@ -70,6 +68,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("style.css");
         stage.setTitle("olTáska");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
