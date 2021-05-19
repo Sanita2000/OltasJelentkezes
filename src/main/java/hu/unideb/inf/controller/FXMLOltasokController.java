@@ -107,14 +107,6 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
     private Button info;
 
     @FXML
-    private Button fooldal;
-
-    @FXML
-    void handleFooldal (ActionEvent event) throws IOException {
-        ChangeScene(event, "FXMLindexScene");
-    }
-
-    @FXML
     void handleButtonPushed(ActionEvent event) throws IOException {
         megfeleloKor = true;
         String oltasID;

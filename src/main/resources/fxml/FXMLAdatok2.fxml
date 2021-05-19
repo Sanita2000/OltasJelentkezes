@@ -16,7 +16,7 @@
       <Separator layoutX="522.0" layoutY="81.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="6.0" />
       <TextFlow id="sumlabels" layoutX="229.0" layoutY="80.0" prefHeight="25.0" prefWidth="293.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Név" wrappingWidth="227.798828125">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Név" wrappingWidth="227.798828125">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -25,7 +25,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="229.0" layoutY="147.0" prefHeight="25.0" prefWidth="293.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="TAJ szám" wrappingWidth="293.13671875">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="TAJ szám" wrappingWidth="293.13671875">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -34,7 +34,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="223.0" layoutY="222.0" prefHeight="25.0" prefWidth="300.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum" wrappingWidth="271.390625">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Születési dátum" wrappingWidth="271.390625">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -43,7 +43,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="223.0" layoutY="293.0" prefHeight="25.0" prefWidth="300.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" wrappingWidth="285.9921875">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Nem:" wrappingWidth="285.9921875">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -52,7 +52,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="525.0" layoutY="81.0" prefHeight="25.0" prefWidth="378.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Oltás azonosító/név" wrappingWidth="335.79296875">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Oltás azonosító/név" wrappingWidth="335.79296875">
                <font>
                   <Font size="20.0" />
                </font>
@@ -61,7 +61,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="524.0" layoutY="147.0" prefHeight="25.0" prefWidth="378.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Választott orvos" wrappingWidth="295.591796875">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Választott orvos" wrappingWidth="295.591796875">
                <font>
                   <Font size="20.0" />
                </font>
@@ -70,7 +70,7 @@
       </TextFlow>
       <TextFlow id="sumlabels" layoutX="525.0" layoutY="222.0" prefHeight="25.0" prefWidth="378.0">
          <children>
-            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Időpont" wrappingWidth="191.60546875">
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white;" text="Időpont" wrappingWidth="191.60546875">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
