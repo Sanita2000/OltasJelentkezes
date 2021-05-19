@@ -2,56 +2,150 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLAdatok2Controller">
+<AnchorPane id="osszesitopane" maxHeight="612.0" maxWidth="900.0" minHeight="612.0" minWidth="900.0" prefHeight="612.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLAdatok2Controller">
    <children>
-      <Text layoutX="237.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Összesítő" wrappingWidth="139.02734375">
+      <Button layoutX="229.0" layoutY="538.0" mnemonicParsing="false" onAction="#backToTheDoctors" prefHeight="33.0" prefWidth="71.0" text="Vissza" />
+      <Button fx:id="jelentkezes" layoutX="732.0" layoutY="538.0" mnemonicParsing="false" onAction="#kuldes" prefHeight="34.0" prefWidth="125.0" text="Jelentkezés" />
+      <Separator layoutX="522.0" layoutY="81.0" orientation="VERTICAL" prefHeight="405.0" prefWidth="6.0" />
+      <TextFlow id="sumlabels" layoutX="229.0" layoutY="80.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Név" wrappingWidth="227.798828125">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="229.0" layoutY="147.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="TAJ szám" wrappingWidth="293.13671875">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="223.0" layoutY="222.0" prefHeight="25.0" prefWidth="300.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum" wrappingWidth="271.390625">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="223.0" layoutY="293.0" prefHeight="25.0" prefWidth="300.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" wrappingWidth="285.9921875">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="525.0" layoutY="81.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Oltás azonosító/név" wrappingWidth="335.79296875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="524.0" layoutY="147.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Választott orvos" wrappingWidth="295.591796875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumlabels" layoutX="525.0" layoutY="222.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumlabels" strokeType="OUTSIDE" strokeWidth="0.0" text="Időpont" wrappingWidth="191.60546875">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="526.0" layoutY="112.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumtexts" fx:id="oltasTipus" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="526.0" layoutY="184.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumtexts" fx:id="valasztOrvos" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <CheckBox fx:id="ellenorzes" layoutX="234.0" layoutY="507.0" mnemonicParsing="false" onAction="#visszaallit" text="Kijelentem, hogy az adataim valóságnak megfelelnek." />
+      <Text fx:id="hiba" fill="#f80808" layoutX="235.0" layoutY="495.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Kötelező!" visible="false" wrappingWidth="58.60546875" />
+      <TextFlow id="sumtexts" layoutX="525.0" layoutY="258.0" prefHeight="25.0" prefWidth="378.0">
+         <children>
+            <Text id="sumtexts" fx:id="idopontText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="372.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="228.0" layoutY="111.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumtexts" fx:id="nevMezo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="299.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="229.0" layoutY="185.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumtexts" fx:id="tajMezo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="299.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="228.0" layoutY="259.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumtexts" fx:id="szulinapMezo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="299.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow id="sumtexts" layoutX="228.0" layoutY="329.0" prefHeight="25.0" prefWidth="293.0">
+         <children>
+            <Text id="sumtexts" fx:id="nemMezo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="299.13671875">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Label id="title" layoutX="226.0" layoutY="-1.0" prefHeight="64.0" prefWidth="681.0" text="Összesítő">
          <font>
-            <Font size="19.0" />
-         </font></Text>
-      <Button layoutX="62.0" layoutY="344.0" mnemonicParsing="false" onAction="#backToTheDoctors" prefHeight="33.0" prefWidth="71.0" text="Vissza" />
-      <Button fx:id="jelentkezes" layoutX="456.0" layoutY="344.0" mnemonicParsing="false" onAction="#kuldes" prefHeight="33.0" prefWidth="83.0" text="Jelentkezés" />
-      <Separator layoutX="284.0" layoutY="35.0" orientation="VERTICAL" prefHeight="282.0" prefWidth="4.0" />
-      <Text layoutX="51.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név" wrappingWidth="132.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="51.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAJ szám" wrappingWidth="132.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="51.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Születési dátum" wrappingWidth="132.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="51.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:" wrappingWidth="132.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="326.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oltás azonosító/név" wrappingWidth="175.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="326.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Választott orvos" wrappingWidth="175.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text layoutX="326.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Időpont" wrappingWidth="175.13671875">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font></Text>
-      <Text fx:id="oltasTipus" layoutX="339.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="91.13671875" />
-      <Text fx:id="valasztOrvos" layoutX="339.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="91.13671875" />
-      <CheckBox fx:id="ellenorzes" layoutX="61.0" layoutY="309.0" mnemonicParsing="false" onAction="#visszaallit" text="Kijelentem, hogy az adataim valóságnak megfelelnek." />
-      <Text fx:id="hiba" fill="#f80808" layoutX="62.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Kötelező!" visible="false" />
-      <Text fx:id="idopontText" layoutX="326.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="153.0" />
-      <Text fx:id="nevMezo" layoutX="51.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="tajMezo" layoutX="50.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="szulinapMezo" layoutX="50.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="nemMezo" layoutX="51.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Font size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
