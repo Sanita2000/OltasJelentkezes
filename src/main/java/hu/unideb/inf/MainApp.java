@@ -59,7 +59,6 @@ public class MainApp extends Application {
         f1.setNev("Anitaa");
         dao.save(f1);*/
         
-        SceneExtentions.GenerateTestOltasEsemeny();
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLLoginScene.fxml"));
         MenuBar menuBar = new MenuBar();
         
