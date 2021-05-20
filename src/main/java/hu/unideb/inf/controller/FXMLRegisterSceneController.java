@@ -206,7 +206,7 @@ public class FXMLRegisterSceneController implements Initializable{
     return (jelszo1.equals(jelszo2)) && kisbetuk > 0 && nagybetuk > 0 && szamok > 0 && jelszo1.length() > 8;
     }
 
-    private boolean ErvenyesNev(String nev) {
+    public boolean ErvenyesNev(String nev) {
         int szamok = 0;
         for(int i = 0; i < nev.length(); i++)
             if(Character.isDigit(nev.charAt(i))) szamok++;
@@ -224,7 +224,7 @@ public class FXMLRegisterSceneController implements Initializable{
     }
     return true;
     }
-    private boolean ErvenyesTaj(int taj) {
+    public boolean ErvenyesTaj(int taj) {
         String TAJ=""+taj;
             return isNumeric(TAJ) && TAJ.length()==9 && TAJ.charAt(0)!='0';
     }
