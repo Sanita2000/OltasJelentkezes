@@ -46,7 +46,7 @@ public class OltasEsemeny {
     
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "ID")
-    public Szemely user;
+    public FelhasznaloSzemely user;
     
     
     public int getID() {

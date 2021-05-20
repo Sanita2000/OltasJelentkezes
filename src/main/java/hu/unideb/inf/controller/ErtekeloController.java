@@ -18,7 +18,7 @@ import javafx.scene.control.TextArea;
 import org.controlsfx.control.Rating;
 
 public class ErtekeloController implements Initializable{
-
+            
     JPADAO dao = new JPADAO();
     @FXML
     private Label kerdesLabel;
@@ -119,7 +119,7 @@ public class ErtekeloController implements Initializable{
         }
         else
         {
-            sc.ChangeScene(event, "FXMLStudentsScene");
+            sc.ChangeScene(event, "FXMLindexScene");
         }
         
     }

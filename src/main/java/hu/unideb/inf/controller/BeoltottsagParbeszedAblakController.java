@@ -6,29 +6,17 @@
 package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
-import hu.unideb.inf.MainApp;
-import hu.unideb.inf.model.DAO;
-import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
-import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.Szemely;
-import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 
@@ -56,7 +44,7 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
         else
         {
             SceneExtentions sc = new SceneExtentions();
-            sc.ChangeScene(event, "FXMLStudentsScene");
+            sc.ChangeScene(event, "FXMLindexScene");
         }
     }
 

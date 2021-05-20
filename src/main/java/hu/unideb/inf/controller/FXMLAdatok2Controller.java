@@ -29,12 +29,12 @@ import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvos;
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasNev;
-import static hu.unideb.inf.controller.indexController.userID;
+import static hu.unideb.inf.controller.indexController.belepett;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.OltasEsemeny;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
-import hu.unideb.inf.model.Szemely;
 
 import hu.unideb.inf.model.Vakcina;
 import java.time.LocalDateTime;
@@ -179,10 +179,10 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             }
         
-
+            System.out.println("oltásAzonosító: " + oltasAzonosito);
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
-            oltas.user = dao.GetUserById(userID);
+            oltas.user = dao.GetUserById(belepett.getID());
             //System.out.println(vakcina.beoltas);
 
             dao.save(oltas);
@@ -214,12 +214,41 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
         valasztOrvos.setText(valasztottOrvos);
         idopontText.setText(valasztottIdopont);
         JPADAO dao = new JPADAO();
-        Szemely aktualisUser = dao.GetUserById(userID);
+        FelhasznaloSzemely aktualisUser = dao.GetUserById(belepett.getID());
         nevMezo.setText(aktualisUser.getNev());
         tajMezo.setText("" + aktualisUser.getTAJ());
         szulinapMezo.setText(aktualisUser.getSzuletesiDatum().toString());
         nemMezo.setText(aktualisUser.getNem().toString());
         
     }    
+    
+     SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {        
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
+
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
+
+
     
 }

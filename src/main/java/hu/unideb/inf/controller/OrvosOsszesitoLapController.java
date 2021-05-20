@@ -7,7 +7,6 @@ package hu.unideb.inf.controller;
 
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.DAO;
-import hu.unideb.inf.model.Felhasznalo;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
 import hu.unideb.inf.model.OrvosBeosztas;
@@ -109,5 +108,34 @@ public class OrvosOsszesitoLapController implements Initializable {
         rating.setMouseTransparent(true);
         return rating;
     }
+    
+    SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {
+        System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
+
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
+
 
 }

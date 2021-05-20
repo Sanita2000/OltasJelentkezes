@@ -11,6 +11,7 @@ import Extensions.SceneExtentions;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Vakcina;
+import hu.unideb.inf.model.VakcinaErtekeles;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -25,6 +26,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -58,6 +61,12 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
     
     @FXML
     private Text szoveg;
+    
+    @FXML
+    private Label label_szovvisszajelzes;
+    
+    @FXML
+    private ListView<String> szoveges_ertekelesek;
 
     
     @FXML
@@ -83,6 +92,31 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        szoveges_ertekelesek.setCellFactory(param -> new ListCell<String>(){
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item==null) {
+                    setGraphic(null);
+                    setText(null); 
+                    // other stuff to do...
+
+                }else{
+
+                    // set the width's
+                    setMinWidth(param.getWidth());
+                    setMaxWidth(param.getWidth());
+                    setPrefWidth(param.getWidth());
+
+                    // allow wrapping
+                    setWrapText(true);
+
+                    setText(item.toString());
+
+
+                }
+            }
+        });
 
         List<Vakcina> vakcinak = dao.getAllVakcina();
         int i = 0;
@@ -118,12 +152,17 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
             @Override
             public void changed(ObservableValue<? extends String> ov, String oldValue, String newValue) {
                 //System.out.println(newValue);
+                List<VakcinaErtekeles> ertekelesek = null;
             for (Vakcina v: vakcinak)
             {
                 if(v.getNev() == newValue)
                 {
                     
                     ertek = v.getErtekeles();
+                    ertekelesek = dao.GetVakcinaErtekelesekByVakcinaID(v.getID());
+                    for (int i = 0; i < ertekelesek.size(); i++) {
+                        System.out.println(ertekelesek.get(i).getErtekeles());
+                    }
                     break;
                 }
             }
@@ -135,9 +174,27 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
             }
             else
             {
-            szoveg.setVisible(false);
-            ertekeles.ratingProperty().set(floatKerekit(ertek));
+                szoveg.setVisible(false);
+                ertekeles.ratingProperty().set(floatKerekit(ertek));
             }
+            
+            szoveges_ertekelesek.getItems().clear();
+            if (ertekelesek != null || ertekelesek.size() == 0)
+            {
+                for (int j = 0; j < ertekelesek.size(); j++) {
+                    
+                    System.out.println(ertekelesek.get(j).getErtekeles());
+                    szoveges_ertekelesek.getItems().add(ertekelesek.get(j).getErtekeles());
+                }
+                szoveges_ertekelesek.setVisible(true);
+                label_szovvisszajelzes.setText("Szöveges visszajelzések:");
+                
+            }
+            else{
+                szoveges_ertekelesek.setVisible(false);
+                label_szovvisszajelzes.setText("Szöveges visszajelzések: még nem érkeztek szöveges visszajelzések");
+            }
+            
             }
         });
 
@@ -146,5 +203,31 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
     private double floatKerekit(float szam) {
         return Math.round(szam);
     }
+    SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {
+        System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
 
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
 }

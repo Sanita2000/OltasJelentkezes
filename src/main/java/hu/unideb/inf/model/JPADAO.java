@@ -7,7 +7,6 @@ package hu.unideb.inf.model;
 
 import static hu.unideb.inf.controller.FXMLAdatokController.valasztottOrvosID;
 import static hu.unideb.inf.controller.FXMLOltasokController.oltasAzonosito;
-import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -178,10 +177,11 @@ public class JPADAO implements DAO{
         }
     }
 
+  
     @Override
-    public Szemely GetUserById(int userid) {
+    public FelhasznaloSzemely GetUserById(int userid) {
         try{
-            TypedQuery<Szemely> o_query = entityManager.createQuery("SELECT a FROM Szemely a WHERE ID = " + userid, Szemely.class);
+            TypedQuery<FelhasznaloSzemely> o_query = entityManager.createQuery("SELECT a FROM FelhasznaloSzemely a WHERE ID = " + userid, FelhasznaloSzemely.class);
             return o_query.getSingleResult();
         }
         catch(Exception e)
@@ -190,9 +190,16 @@ public class JPADAO implements DAO{
             return null;
         }
     }
-   
     
+
     @Override
+    public List<FelhasznaloSzemely> GetFelhasznaloSzemelyek() {
+        TypedQuery<FelhasznaloSzemely> o_query = entityManager.createQuery("SELECT a FROM FelhasznaloSzemely a ", FelhasznaloSzemely.class);
+        List<FelhasznaloSzemely> felhasznalok = o_query.getResultList();
+        return felhasznalok;
+    }
+    
+     @Override
     public List<OrvosBeosztas> GetOrvosIdopontok(int id) {
     try{        
         TypedQuery<OrvosBeosztas> query = entityManager.createQuery("SELECT b FROM OrvosBeosztas b WHERE ID = " + id, OrvosBeosztas.class);
@@ -208,5 +215,13 @@ public class JPADAO implements DAO{
         System.err.println("Hiba orvosbeosztál lekérdezése közben! Excetion: " + e.getMessage());
         return null;
     }
+    }
+
+    @Override
+    public List<VakcinaErtekeles> GetVakcinaErtekelesekByVakcinaID(int vakcinaID) {
+        TypedQuery<VakcinaErtekeles> query = entityManager.createQuery("SELECT b FROM VakcinaErtekeles b WHERE vakcina_id = " + vakcinaID, VakcinaErtekeles.class);
+        List<VakcinaErtekeles> result = query.getResultList();
+        
+        return result;
     }
 }

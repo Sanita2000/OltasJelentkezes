@@ -14,11 +14,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.TablaFeltoltes;
-import static hu.unideb.inf.controller.indexController.userID;
-import hu.unideb.inf.model.Felhasznalo;
+//import static hu.unideb.inf.controller.indexController.userID;
+import static hu.unideb.inf.controller.indexController.belepett;
+import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
 import hu.unideb.inf.model.Orvos;
-import hu.unideb.inf.model.Szemely;
 import hu.unideb.inf.model.Vakcina;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -43,7 +43,7 @@ import javax.persistence.Persistence;
 /**
  * FXML Controller class
  *
- * @author Tamás Ádám
+ * @author Tamás m
  */
 public class FXMLOltasokController extends SceneExtentions implements Initializable {
 
@@ -107,14 +107,6 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
     private Button info;
 
     @FXML
-    private Button fooldal;
-
-    @FXML
-    void handleFooldal (ActionEvent event) throws IOException {
-        ChangeScene(event, "FXMLindexScene");
-    }
-
-    @FXML
     void handleButtonPushed(ActionEvent event) throws IOException {
         megfeleloKor = true;
         String oltasID;
@@ -124,10 +116,10 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
         cutAtId = cutAtId[1].split(", ");
         eventString = cutAtId[0];
         oltasID = eventString;
-        //System.out.println("eventString ===>>>" + eventString + "<<<<====");
+        System.out.println("eventString ===>>>" + eventString + "<<<<====");
         //System.out.println(oltasID);
         JPADAO dao = new JPADAO();
-        LocalDate gc = dao.GetUserById(userID).getSzuletesiDatum();
+        LocalDate gc = dao.GetUserById(belepett.getID()).getSzuletesiDatum();
         LocalDate start = gc;
         LocalDate end = LocalDate.now();
         eletkor = ChronoUnit.YEARS.between(start, end);
@@ -136,6 +128,7 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
         
         
         List<Vakcina> oltasok = dao.getAllVakcina();
+        System.out.println("oltasID a btn-nel: " + oltasok.get(4).getID());
         switch (oltasID)
         {
             case "btn1": oltasNev = oltasok.get(0).getNev(); oltasAzonosito=oltasok.get(0).getID(); break;
@@ -155,10 +148,11 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
             case "btn15": if (eletkor >= 18) {oltasNev = oltasok.get(14).getNev(); oltasAzonosito=oltasok.get(14).getID(); break;} kiirAlert(); break;
             case "btn16": if (eletkor >= 18) {oltasNev = oltasok.get(15).getNev(); oltasAzonosito=oltasok.get(15).getID(); break;} kiirAlert(); break;
             
-            default: oltasNev = "Ismeretlen"; break;
+            
         }
         
-
+        System.out.println("btnoltásAzonosító: " + oltasAzonosito);
+        System.out.println("btnoltásAzonosító: " + oltasNev);
         if (megfeleloKor)
         {
             ChangeScene(event, "FXMLAdatok");
@@ -189,5 +183,35 @@ public class FXMLOltasokController extends SceneExtentions implements Initializa
  
             
     }
+    
+        SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {
+        System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
+
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
+
+
     
 }
