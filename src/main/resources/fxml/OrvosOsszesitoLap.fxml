@@ -79,9 +79,9 @@
             </Button>
          </children>
       </VBox>
-      <Label id="title" layoutX="193.0" layoutY="38.0" prefHeight="47.0" prefWidth="662.0" text="Orvosaink" textAlignment="RIGHT" textFill="WHITE">
+      <Label id="title" layoutX="144.0" prefHeight="61.0" prefWidth="756.0" text="Orvosaink" textAlignment="RIGHT" textFill="WHITE">
          <font>
-            <Font name="Century Gothic Bold" size="30.0" />
+            <Font size="36.0" />
          </font>
       </Label>
    </children>

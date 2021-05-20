@@ -52,29 +52,29 @@ public FXMLLoginSceneController(){
         for(int i = 0; i < felhasznalo.size(); i++) {
             System.out.println("Email: " + felhasznalo.get(i).getEmail());
             System.out.println("Jelszo: " + felhasznalo.get(i).getJelszo());
-            if(felhasznalo.get(i).getEmail().equals(email) && felhasznalo.get(i).getJelszo().equals(jelszo)) {
+            if(felhasznalo.get(i).getEmail().equals(email) && felhasznalo.get(i).getJelszo().equals(jelszo)) 
+            {
                 
                 belepett = felhasznalo.get(i);
                 
                 JOptionPane.showMessageDialog(null,
                 "Sikeres bejelentkezés!. Az átirányítás folyamatban",
                 "Üzenet",
-            JOptionPane.PLAIN_MESSAGE);
-            SceneExtentions sc = new SceneExtentions();
-            List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
-            if (oltasok.size() > 0)
-            {   
-                sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
-            }
-            else{
-                sc.ChangeScene(event, "FXMLindexScene");
-            }
-            
-            counter = 1;
-            break;
+                JOptionPane.PLAIN_MESSAGE);
+                SceneExtentions sc = new SceneExtentions();
+                List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
+                if (oltasok.size() > 0)
+                {   
+                    sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
+                }
+                else{
+                    sc.ChangeScene(event, "FXMLindexScene");
+                }
+                counter = 1;
+                break;
             }
         }
-        if(counter != 1) {
+        if(counter == 0) {
             JOptionPane.showMessageDialog(null,
             "Hibás E-mail cím / Jelszó. Ha nem rendelkezik fiókkal, a regisztrációhoz kattintson a Regisztráció gombra",
             "Hiba",
@@ -90,9 +90,11 @@ public FXMLLoginSceneController(){
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        textemail.setText("anita@oltsatokbe.com");
-        textjelszo.setText("P@ssw0rd__");
+        /*
+        textemail.setText("miki@oltsatokbe.com");
+        textjelszo.setText("Jelszo123");
         textemail.setStyle("-fx-background-color: BEIGE;");
+        */
     }
 
 }

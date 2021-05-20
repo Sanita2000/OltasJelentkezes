@@ -146,7 +146,6 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
         
         ertekeles.setMouseTransparent(true); // ne lehessen modosítani, disable nemjo, mert elszürkiti
         ertekeles.ratingProperty().set(floatKerekit(0));
-        szoveg.setText("Válassz egy oltást!");
         
         oltasLista.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -171,9 +170,11 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
                 szoveg.setVisible(true);
                 szoveg.setText("Még nem érkezett értékelés ehhez az oltáshoz!");
                 ertekeles.ratingProperty().set(0);
+                ertekeles.setVisible(false);
             }
             else
             {
+                ertekeles.setVisible(true);
                 szoveg.setVisible(false);
                 ertekeles.ratingProperty().set(floatKerekit(ertek));
             }

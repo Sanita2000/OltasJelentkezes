@@ -73,15 +73,15 @@
             </Button>
          </children>
       </VBox>
-      <Label id="title" layoutX="170.0" layoutY="28.0" prefHeight="47.0" prefWidth="704.0" text="Információk az oltással kapcsolatban" textAlignment="RIGHT" textFill="WHITE">
+      <Label id="title" layoutX="145.0" prefHeight="61.0" prefWidth="755.0" text="Információk az oltással kapcsolatban" textAlignment="RIGHT" textFill="WHITE">
          <font>
-            <Font name="Century Gothic Bold" size="30.0" />
+            <Font size="30.0" />
          </font>
       </Label>
       <Pane layoutX="222.0" layoutY="94.0" prefHeight="493.0" prefWidth="600.0" styleClass="orvosvalsztoaltpane">
          <children>
             <ChoiceBox fx:id="valaszto" layoutX="101.0" layoutY="94.0" prefHeight="24.0" prefWidth="199.0" styleClass="dropdownlist" />
-            <TextArea fx:id="szoveg" layoutX="31.0" layoutY="157.0" prefHeight="306.0" prefWidth="539.0" />
+            <TextArea fx:id="szoveg" editable="false" layoutX="31.0" layoutY="157.0" prefHeight="306.0" prefWidth="539.0" />
             <Text layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Válassza ki melyik oltásról szeretne többet megtudni!" textAlignment="CENTER" wrappingWidth="600.0">
                <font>
                   <Font size="18.0" />

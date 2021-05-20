@@ -59,7 +59,7 @@ public class MainApp extends Application {
         f1.setNev("Anitaa");
         dao.save(f1);*/
         
-        SceneExtentions.GenerateTestOltasEsemeny();
+        //SceneExtentions.GenerateTestOltasEsemeny();
         FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("/fxml/FXMLLoginScene.fxml"));
         MenuBar menuBar = new MenuBar();
         
@@ -68,7 +68,7 @@ public class MainApp extends Application {
         scene.getStylesheets().add("style.css");
         stage.setTitle("olTáska");
         stage.setScene(scene);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 

@@ -96,8 +96,8 @@ and open the template in the editor.
 }
 
 #title {
-    -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-background-color: rgba(14, 114, 140, 0.9);
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-padding: 0 0 0 30;
 }
 
