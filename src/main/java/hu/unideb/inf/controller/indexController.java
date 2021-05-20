@@ -130,19 +130,19 @@ public class indexController implements Initializable {
         LocalDate BirthDay=BDPicker.getValue();
         if(!isNumeric(TAJ) || TAJ.length()!=9 || TAJ.charAt(0)=='0')
         {
-            JOptionPane.showMessageDialog(null,"HibĂˇs adatot adtĂˇl meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Hibás adatot adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
             return;
         }
 
 
         if (!ErvenyesNev(nev)) 
         {
-            JOptionPane.showMessageDialog(null,"HibĂˇs nevet adtĂˇl meg.","Hiba",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Hibás nevet adtál meg.","Hiba",JOptionPane.ERROR_MESSAGE);
             return;
         } 
         else {
         JOptionPane.showMessageDialog(null,
-                    "Az adatok sikeresen mĂłdosĂ­tva.",
+                    "Az adatok sikeresen módosítva.",
                     "Ăśzenet",
                     JOptionPane.PLAIN_MESSAGE);
 
@@ -269,7 +269,7 @@ public class indexController implements Initializable {
     @FXML
     void indexmenuClicked(ActionEvent event) throws IOException {
         System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
-        sc.ChangeScene(event, "FMXMLindexScene");
+        sc.ChangeScene(event, "FXMLindexScene");
     }
 
     @FXML
@@ -279,8 +279,7 @@ public class indexController implements Initializable {
 
     @FXML
     void kilelpesmenuclicked(ActionEvent event) throws IOException {
-        sc.ChangeScene(event, "FXMLLoginScene");
-        belepett = null;
+        sc.ChangeScene(event, "FXMLLoginScene");        
     }
 
     @FXML

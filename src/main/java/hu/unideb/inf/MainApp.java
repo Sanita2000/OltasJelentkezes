@@ -68,7 +68,6 @@ public class MainApp extends Application {
         scene.getStylesheets().add("style.css");
         stage.setTitle("olTáska");
         stage.setScene(scene);
-        stage.setResizable(false);
         stage.show();
     }
 

@@ -5,21 +5,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.BeoltottsagParbeszedAblakController">
+<AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="900.0" styleClass="beoltottsagparbeszedablakpane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.BeoltottsagParbeszedAblakController">
    <children>
-      <Label fx:id="kerdesLabel" layoutX="26.0" layoutY="39.0" prefHeight="100.0" prefWidth="557.0" textAlignment="CENTER">
+      <Label fx:id="kerdesLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="228.0" layoutY="165.0" prefHeight="73.0" prefWidth="519.0">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="114.0" layoutY="246.0" mnemonicParsing="false" onAction="#OnIgenButtonClicked" prefHeight="62.0" prefWidth="107.0" text="Igen" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="120.0">
+      <Button layoutX="285.0" layoutY="356.0" mnemonicParsing="false" onAction="#OnIgenButtonClicked" prefHeight="73.0" prefWidth="205.0" style="-fx-background-color: rgba(14, 114, 140);" styleClass="menubutton" text="Igen" textFill="WHITE" AnchorPane.bottomAnchor="183.0" AnchorPane.leftAnchor="285.0">
          <font>
-            <Font size="19.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Button>
-      <Button layoutX="349.0" layoutY="246.0" mnemonicParsing="false" onAction="#onNemButtonClicked" prefHeight="62.0" prefWidth="107.0" text="Nem" AnchorPane.bottomAnchor="100.0" AnchorPane.rightAnchor="120.0">
+      <Button layoutX="520.0" layoutY="356.0" mnemonicParsing="false" onAction="#onNemButtonClicked" prefHeight="73.0" prefWidth="205.0" style="-fx-background-color: rgba(14, 114, 140);" styleClass="menubutton" text="Nem" textFill="WHITE" AnchorPane.bottomAnchor="182.66666666666669" AnchorPane.rightAnchor="174.66666666666663">
          <font>
-            <Font size="19.0" />
+            <Font name="System Bold" size="27.0" />
          </font>
       </Button>
    </children>

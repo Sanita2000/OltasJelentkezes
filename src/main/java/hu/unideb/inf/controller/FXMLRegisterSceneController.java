@@ -152,7 +152,7 @@ public class FXMLRegisterSceneController implements Initializable{
 
         adatvedelemelfogadas.setText("Megismertem és elfogadom az adatkezelési \n" +
                                     "tájékoztatóban foglaltakat az adataim továbbítása céljából");
-        adatvedelemtext.setText("ADATKEZELÉSI T�?JÉKOZTATÓ\n" + 
+        adatvedelemtext.setText("ADATKEZELÉSI TÁJÉKOZTATÓ\n" + 
                                 "A szoftver célja, hogy az Oltáska csapat kommunikációs\n" +               
                                 "feladatkörében eljárva tájékoztatást nyújtson a vírusok \n" +
                                 "elleni védőoltás igénylésének lehetőségéről, és \n" +
@@ -177,7 +177,7 @@ public class FXMLRegisterSceneController implements Initializable{
                                 "TAJ-szám) a természetes személyeknek a személyes adatok\n" +
                                 "kezelése tekintetében történő védelméről és az ilyen\n" +
                                 "adatok szabad áramlásáról, hozzájáruló nyilatkozata\n" +
-                                "visszavonásáig, az Oltáska csapatnak átadja. A\n" +
+                                "visszavonásáig, az Oltáska csapatnak átadja. \n" +
                                 "személyes adatokat az Oltáska csapat titkosított\n" +
                                 "adatbázisban tárolja, nyilvánosságra nem hozza,\n" +
                                 "külföldre és harmadik félnek nem továbbítja.");

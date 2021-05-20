@@ -179,7 +179,7 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
 
             }
         
-
+            System.out.println("oltásAzonosító: " + oltasAzonosito);
             oltas.vakcina = dao.GetVakcinaById(oltasAzonosito);
             oltas.orvos = dao.GetOrvosById(valasztottOrvosID);
             oltas.user = dao.GetUserById(belepett.getID());
@@ -221,5 +221,34 @@ public class FXMLAdatok2Controller extends SceneExtentions implements Initializa
         nemMezo.setText(aktualisUser.getNem().toString());
         
     }    
+    
+     SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {        
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
+
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
+
+
     
 }

@@ -44,7 +44,7 @@ public class BeoltottsagParbeszedAblakController implements Initializable {
         else
         {
             SceneExtentions sc = new SceneExtentions();
-            sc.ChangeScene(event, "FXMLStudentsScene");
+            sc.ChangeScene(event, "FXMLindexScene");
         }
     }
 

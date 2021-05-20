@@ -203,5 +203,31 @@ public class FXMLVakcinakController extends SceneExtentions implements Initializ
     private double floatKerekit(float szam) {
         return Math.round(szam);
     }
+    SceneExtentions sc = new SceneExtentions();
+    
+    @FXML
+    void indexmenuClicked(ActionEvent event) throws IOException {
+        System.out.println("hu.unideb.inf.controller.indexController.indexmenuClicked()");
+        sc.ChangeScene(event, "FXMLindexScene");
+    }
 
+    @FXML
+    void jelentkezesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLOltasok");
+    }
+
+    @FXML
+    void kilelpesmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLLoginScene");        
+    }
+
+    @FXML
+    void orvosokmenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "OrvosOsszesitoLap");
+    }
+
+    @FXML
+    void vakcinainfomenuclicked(ActionEvent event) throws IOException {
+        sc.ChangeScene(event, "FXMLVakcinak");
+    }
 }

@@ -119,7 +119,7 @@ public class ErtekeloController implements Initializable{
         }
         else
         {
-            sc.ChangeScene(event, "FXMLStudentsScene");
+            sc.ChangeScene(event, "FXMLindexScene");
         }
         
     }

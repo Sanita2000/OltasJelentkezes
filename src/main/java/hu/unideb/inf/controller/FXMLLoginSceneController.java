@@ -8,6 +8,7 @@ package hu.unideb.inf.controller;
 import Extensions.SceneExtentions;
 import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
+import hu.unideb.inf.model.OltasEsemeny;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -60,7 +61,15 @@ public FXMLLoginSceneController(){
                 "Üzenet",
             JOptionPane.PLAIN_MESSAGE);
             SceneExtentions sc = new SceneExtentions();
-            sc.ChangeScene(event, "FXMLindexScene");
+            List<OltasEsemeny> oltasok = SceneExtentions.CheckPastOltasEsemenyek();
+            if (oltasok.size() > 0)
+            {   
+                sc.ChangeScene(event, "BeoltottsagParbeszedAblak");
+            }
+            else{
+                sc.ChangeScene(event, "FXMLindexScene");
+            }
+            
             counter = 1;
             break;
             }

@@ -1,5 +1,6 @@
 package Extensions;
 
+import static hu.unideb.inf.controller.indexController.belepett;
 import hu.unideb.inf.model.DAO;
 import hu.unideb.inf.model.FelhasznaloSzemely;
 import hu.unideb.inf.model.JPADAO;
@@ -148,12 +149,10 @@ public class SceneExtentions {
     
     public static List<OltasEsemeny> CheckPastOltasEsemenyek()
     {
-        /*List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(77);
+        List<OltasEsemeny> esemenyek = dao.GetUserOltasEsemenyei(belepett.getID());
         esemenyek.removeIf(e -> e.getIdopont().isAfter(LocalDateTime.now()) || e.isVizsgalva());
         System.out.println("vizsg");
-        return esemenyek;        */
-        return new ArrayList<OltasEsemeny>();
-    }
+        return esemenyek;            }
     
     
 }

@@ -9,35 +9,35 @@
 
 <AnchorPane id="logpane" maxHeight="400.0" maxWidth="900.0" minHeight="400.0" minWidth="900.0" prefHeight="400.0" prefWidth="900.0" stylesheets="@./style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.FXMLLoginSceneController">
    <children>
-      <Label id="titlelabel" layoutX="-5.0" layoutY="-3.0" prefHeight="65.0" prefWidth="907.0" text="Bejelentkezés">
+      <Label id="title" layoutX="-5.0" layoutY="-3.0" prefHeight="65.0" prefWidth="907.0" text="Bejelentkezés">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField id="emailtext" fx:id="textemail" layoutX="65.0" layoutY="158.0" prefHeight="32.0" prefWidth="284.0" promptText="✉ E-mail " />
-      <PasswordField id="passtext" fx:id="textjelszo" layoutX="65.0" layoutY="244.0" prefHeight="32.0" prefWidth="284.0" promptText="🔒 Jelszó" />
-      <Label id="emaillabel" layoutX="66.0" layoutY="116.0" prefHeight="31.0" prefWidth="284.0" text="E-mail:">
+      <TextField id="regtextfields" fx:id="textemail" layoutX="65.0" layoutY="158.0" prefHeight="32.0" prefWidth="284.0" promptText="✉ E-mail " />
+      <PasswordField id="regtextfields" fx:id="textjelszo" layoutX="65.0" layoutY="248.0" prefHeight="32.0" prefWidth="284.0" promptText="🔒 Jelszó" />
+      <Label id="loglabels" layoutX="65.0" layoutY="112.0" prefHeight="31.0" prefWidth="284.0" text="E-mail:">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label id="passlabel" layoutX="67.0" layoutY="205.0" prefHeight="31.0" prefWidth="284.0" text="Jelszó:">
+      <Label id="loglabels" layoutX="67.0" layoutY="205.0" prefHeight="35.0" prefWidth="284.0" text="Jelszó:">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button id="regbutton" layoutX="580.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" prefHeight="40.0" prefWidth="146.0" text="Regisztráció" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="580.0" AnchorPane.rightAnchor="174.0" AnchorPane.topAnchor="224.0">
+      <Button id="regbutton" layoutX="565.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" prefHeight="40.0" prefWidth="146.0" styleClass="simabutton" text="Regisztráció" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="565.0" AnchorPane.rightAnchor="189.0" AnchorPane.topAnchor="224.0">
          <font>
             <Font size="18.0" />
          </font></Button>
-      <Button id="loginbutton" layoutX="146.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleBelepesButtonPressed" prefHeight="40.0" prefWidth="123.0" text="Belépés">
+      <Button id="loginbutton" layoutX="146.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleBelepesButtonPressed" prefHeight="40.0" prefWidth="123.0" styleClass="simabutton" text="Belépés">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <Label id="notlabel" layoutX="548.0" layoutY="175.0" prefHeight="31.0" prefWidth="212.0" text="Még nincs fiókja?">
+      <Label id="loglabels" layoutX="529.0" layoutY="175.0" prefHeight="31.0" prefWidth="257.0" text="Még nincs fiókja?">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
    </children>
