@@ -26,7 +26,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button id="regbutton" layoutX="565.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" prefHeight="40.0" prefWidth="146.0" styleClass="simabutton" text="Regisztráció" AnchorPane.bottomAnchor="136.0" AnchorPane.leftAnchor="565.0" AnchorPane.rightAnchor="189.0" AnchorPane.topAnchor="224.0">
+      <Button id="regbutton" layoutX="567.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleRegisztracioButtonPressed" prefHeight="40.0" prefWidth="146.0" styleClass="simabutton" text="Regisztráció" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="567.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="220.0">
          <font>
             <Font size="18.0" />
          </font></Button>
@@ -35,7 +35,7 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <Label id="loglabels" layoutX="529.0" layoutY="175.0" prefHeight="31.0" prefWidth="257.0" text="Még nincs fiókja?">
+      <Label id="loglabels" layoutX="529.0" layoutY="175.0" prefHeight="35.0" prefWidth="221.0" text="Még nincs fiókja?">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
