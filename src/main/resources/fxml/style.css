@@ -10,7 +10,7 @@ and open the template in the editor.
 
 .pane {
     -fx-background-image: url("vizsgal.png");
-    
+
     -fx-background-size:cover;
     -fx-background-position: 200px, 0px, 0px, 0px;
     -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
@@ -26,14 +26,14 @@ and open the template in the editor.
     -fx-font-family: "Century Gothic";
 }
 
-    .menubutton:hover {
-        -fx-background-color: rgba(14, 114, 140, 0.6);
-    }
+.menubutton:hover {
+    -fx-background-color: rgba(14, 114, 140, 0.6);
+}
 
-    .menubutton:pressed {
-        -fx-background-color: rgba(14, 114, 140, 1);
-        
-    }
+.menubutton:pressed {
+    -fx-background-color: rgba(14, 114, 140, 1);
+
+}
 
 .menuhatter {
     -fx-background-color: rgba(14, 114, 140);

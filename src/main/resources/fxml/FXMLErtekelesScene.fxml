@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.Rating?>
 
 <AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="900.0" styleClass="orvososszesitopane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.ErtekeloController">
    <children>
@@ -22,18 +21,18 @@
       </Button>
       <Label fx:id="orvosErtekeloLabel" layoutX="69.0" layoutY="109.0" prefHeight="59.0" prefWidth="305.0" text="Mennyire volt megelégedve orvosunkkal?">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Label layoutX="69.0" layoutY="205.0" prefHeight="59.0" prefWidth="430.0" text="Mennyire van megelégedve a vakcina hatékonyságával?">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <Rating fx:id="vakcinaertekeles" layoutX="84.0" layoutY="170.0" />
       <Label layoutX="69.0" layoutY="300.0" prefHeight="49.0" prefWidth="275.0" text="Kérjük, értékelje pár szóban a vakcinát!">
          <font>
-            <Font size="13.0" />
+            <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <TextArea fx:id="erteklesTextArea" layoutX="76.0" layoutY="349.0" prefHeight="107.0" prefWidth="729.0" />
