@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.Rating?>
+
 
 <AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="900.0" styleClass="orvososszesitopane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.unideb.inf.controller.ErtekeloController">
    <children>
